@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.header-light .navbar .logo-dark {
+  height: 70px;
+}
+.footer {
+  background-color: #ffffff;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top: 1px solid #eee;
+}
+.footer .widget--content img {
+  width: 100%;
+}
+.footer--copyright {
+  background-color: #2b2b2b;
+}
+.footer .widget--content p,
+.footer .widget--links ul li a,
+.footer .widget--contact-info li,
+.social--icons a,
+.footer .footer--widget-title h5 {
+  color: #333;
+}
+.Banner {
+  width: 100%;
+  height: calc(100vh - 150px);
+  overflow: hidden;
+  position: relative;
+}
+.Banner::after {
+  content: ' ';
+  width: 100%;
+  height: calc(100vh - 150px);
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+}
+.Banner img {
+  width: 100%;
+  height: calc(100vh - 150px);
+  object-fit: cover;
+  object-position: left bottom;
+}

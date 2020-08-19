@@ -1,0 +1,95 @@
+body {
+  line-height: 20px;
+}
+a {
+  text-decoration: none;
+}
+h1 {
+  font-size: 45px;
+}
+h3 {
+  font-size: 30px;
+}
+p {
+  line-height: 30px;
+}
+.App {
+  width: 100%;
+}
+.App .App-Header {
+  background-color: #333;
+  display: flex;
+  width: 100%;
+  height: 70px;
+  align-items: flex-end;
+}
+.App .App-Header .App-Container {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+.App .App-Header ul {
+  display: flex;
+}
+.App .App-Header ul li {
+  list-style: none;
+  padding: 0 10px;
+}
+.App .App-Header ul li a {
+  color: white;
+}
+.App .App-Header ul li a:hover {
+  color: #699da5;
+}
+.App .Banner {
+  background-color: #699da5;
+  height: calc(100vh - 70px);
+  display: flex;
+}
+.App .Banner .Banner-Container {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+.App .Banner  .Banner-Container .Banner-Image {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.App .Banner  .Banner-Container .Banner-Image img {
+  height: 80vh;
+}
+.App .Banner  .Banner-Container .Banner-Content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 50%;
+  padding: 0 100px;
+}
+.App .Banner-Content h1,
+.App .Banner-Content h2,
+.App .Banner-Content h3 {
+  width: 100%;
+}
+.App .Content {
+  height: calc(100vh);
+  display: flex;
+}
+.App .Content .Content-Container {
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+}
+.App .Content .Content-Container .Content-Content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.App .Content .Content-Container .Content-Content h1,
+.App .Content .Content-Container .Content-Content p {
+  width: 100%;
+}
