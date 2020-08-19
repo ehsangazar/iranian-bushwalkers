@@ -10,4 +10,4 @@ deploy:
   local_dir: build
   on:
     branch: master
-  fqdn: ib.ehsangazar.com
+  fqdn: dev.ib.org.au
