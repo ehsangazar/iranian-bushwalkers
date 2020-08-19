@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logoImage from './logo.png'
-import { Link } from 'react-router-dom'
+import { Link, useRouteMatch } from 'react-router-dom'
+import { BsFillCaretDownFill } from 'react-icons/bs'
 
 const Header = () => {
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
+  let match = useRouteMatch()
+
+  const handleToggleShowMobileMenu = () => {
+    setShowMobileMenu(!showMobileMenu)
+  }
+
+  console.log('match', match)
+
   return (
     <header
       id="navbar-spy"
@@ -11,13 +21,6 @@ const Header = () => {
       <div id="top-bar" className="top-bar bg-theme">
         <div className="container">
           <div className="row clearfix">
-            <div className="col">
-              <p className="contact-info"></p>
-              <p className="contact-info">
-                <a href="tel:00201065370701"></a>
-              </p>
-              <p className="contact-info"></p>
-            </div>
             <div className="col">
               <p className="contact-social pull-right">
                 <a href="https://www.facebook.com/IranianBushwalkers/">
@@ -36,13 +39,13 @@ const Header = () => {
         className="navbar navbar-expand-lg navbar-dark bg-white"
       >
         <div className="container">
-          <a className="navbar-brand" href="index.html">
+          <Link className="navbar-brand" to="/">
             <img
               className="logo logo-dark"
               src={logoImage}
               alt="Iranian Bushwalkers Logo"
             />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -51,13 +54,22 @@ const Header = () => {
             aria-controls="navbarContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={handleToggleShowMobileMenu}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarContent">
+          <div
+            className="collapse navbar-collapse"
+            id="navbarContent"
+            style={{
+              display: showMobileMenu ? 'block' : 'none',
+            }}
+          >
             <ul className="navbar-nav ml-auto">
-              <li className="has-dropdown active">
+              <li
+                className={`has-dropdown ${match.path === '/' ? 'active' : ''}`}
+              >
                 <Link
                   data-toggle="dropdown"
                   className="dropdown-toggle menu-item"
@@ -67,7 +79,11 @@ const Header = () => {
                 </Link>
               </li>
 
-              <li className="has-dropdown">
+              <li
+                className={`has-dropdown ${
+                  match.path === '/about' ? 'active' : ''
+                }`}
+              >
                 <Link
                   data-toggle="dropdown"
                   className="dropdown-toggle menu-item"
@@ -77,17 +93,11 @@ const Header = () => {
                 </Link>
               </li>
 
-              <li className="has-dropdown">
-                <a
-                  href="https://www.joinit.org/o/iranian-bushwalkers"
-                  data-toggle="dropdown"
-                  className="dropdown-toggle menu-item"
-                >
-                  Membership
-                </a>
-              </li>
-
-              <li className="has-dropdown">
+              <li
+                className={`has-dropdown ${
+                  match.path === '/events' ? 'active' : ''
+                }`}
+              >
                 <a
                   href="http://facebook.com/iranianBushwalkers/events"
                   data-toggle="dropdown"
@@ -97,38 +107,60 @@ const Header = () => {
                 </a>
               </li>
 
-              {/* <li className="has-dropdown">
+              <li className={`has-dropdown`}>
                 <a
-                  href="#"
+                  href="/#"
                   data-toggle="dropdown"
                   className="dropdown-toggle menu-item"
                   data-hover="shop"
                 >
-                  Tools
+                  More
+                  {` `}
+                  <BsFillCaretDownFill />
                 </a>
                 <ul className="dropdown-menu">
                   <li>
-                    <a href="shop.html">shop sidebar</a>
+                    <Link to="/grading-system-guideline">
+                      Grading System Guideline
+                    </Link>
                   </li>
                   <li>
-                    <a href="shop-products.html">shop products</a>
+                    <Link to="/useful-links">Useful Links</Link>
                   </li>
                   <li>
-                    <a href="shop-single.html">shop single</a>
+                    <Link to="/privacy-policy">Privacy Policy</Link>
+                  </li>
+                  <li>
+                    <Link to="/code-of-conduct">Code Of Conduct</Link>
                   </li>
                 </ul>
-              </li> */}
+              </li>
 
-              <li className="has-dropdown">
-                <a
-                  href="/contact"
+              <li
+                className={`has-dropdown ${
+                  match.path === '/contact' ? 'active' : ''
+                }`}
+              >
+                <Link
                   data-toggle="dropdown"
                   className="dropdown-toggle menu-item"
+                  to="/contact"
                 >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
+
+            <div className="module-container">
+              <div className="module module-consultation pull-left">
+                <a
+                  href="https://www.joinit.org/o/iranian-bushwalkers"
+                  className="btn btn-success"
+                >
+                  Membership
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </nav>

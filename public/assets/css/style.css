@@ -3664,31 +3664,6 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   color: #089444;
 }
 
-/* Module Reservation */
-.module-consultation .btn {
-  width: 129px;
-  height: 39px;
-  border-radius: 3px;
-  line-height: 37px;
-  text-transform: capitalize;
-  display: block;
-  margin-right: 20px;
-  cursor: pointer;
-  margin-top: 31px;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  color: #333333;
-  border: 2px solid #ffffff;
-  background-color: #ffffff;
-}
-.module-consultation .btn:hover {
-  background-color: #089444;
-  color: #ffffff;
-  border-color: #089444;
-}
 .module-consultation .btn-dark {
   border-color: #282828;
   color: #282828;

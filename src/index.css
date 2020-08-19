@@ -13,25 +13,6 @@ code {
 .header-light .navbar .logo-dark {
   height: 70px;
 }
-.footer {
-  background-color: #ffffff;
-  padding-top: 0;
-  padding-bottom: 0;
-  border-top: 1px solid #eee;
-}
-.footer .widget--content img {
-  width: 100%;
-}
-.footer--copyright {
-  background-color: #2b2b2b;
-}
-.footer .widget--content p,
-.footer .widget--links ul li a,
-.footer .widget--contact-info li,
-.social--icons a,
-.footer .footer--widget-title h5 {
-  color: #333;
-}
 .Banner {
   width: 100%;
   height: calc(100vh - 150px);
@@ -51,5 +32,39 @@ code {
   width: 100%;
   height: calc(100vh - 150px);
   object-fit: cover;
-  object-position: left bottom;
+  object-position: center;
+}
+.navbar-nav > li.has-dropdown > ul.dropdown-menu {
+  background-color: white;
+}
+ul.dropdown-menu li > a:active,
+ul.dropdown-menu li > a:focus,
+ul.dropdown-menu li > a:hover,
+ul.mega-menu li a:active,
+ul.mega-menu li a:focus,
+ul.mega-menu li a:hover {
+  padding: 0;
+  color: #111111;
+}
+nav#primary-menu {
+  box-shadow: 0px -2px 8px #aaa;
+}
+.container-content {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 30px;
+}
+.work--content img {
+  margin: 40px auto;
+  width: 89%;
+}
+.work-single .work--title h3 {
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 991px) {
+  ul.dropdown-menu {
+    display: block;
+  }
 }

@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "10"
+  - '10'
 script:
   - npm run build
 deploy:
@@ -10,4 +10,4 @@ deploy:
   local_dir: build
   on:
     branch: master
-  fqdn: dev.ib.org.au
+  fqdn: ib.ehsangazar.com
