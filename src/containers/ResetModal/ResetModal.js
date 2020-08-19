@@ -18,7 +18,13 @@ const ResetModal = ({
         <Modal.Header closeButton>
           <Modal.Title>
             <div className="btn-with-loading">
-              {isLoadingResetForm && <img className="loading" src={loading} />}
+              {isLoadingResetForm && (
+                <img
+                  alt="reset password loading"
+                  className="loading"
+                  src={loading}
+                />
+              )}
               Reset Password
             </div>
           </Modal.Title>

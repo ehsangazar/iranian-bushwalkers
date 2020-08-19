@@ -19,14 +19,16 @@ const LoginModal = ({
         <Modal.Header closeButton>
           <Modal.Title>
             <div className="btn-with-loading">
-              {isLoadingLoginForm && <img className="loading" src={loading} />}
+              {isLoadingLoginForm && (
+                <img alt="login modal" className="loading" src={loading} />
+              )}
               Login
             </div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="register-body">
-            <img src={logoImage} alt="register-image" />
+            <img src={logoImage} alt="register" />
             <div className="register-body-form">
               {responseOfApiLogin && (
                 <Alert variant={responseOfApiLogin.type}>

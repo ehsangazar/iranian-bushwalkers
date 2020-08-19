@@ -27,7 +27,7 @@ const ForgotModal = ({
         </Modal.Header>
         <Modal.Body>
           <div className="register-body">
-            <img src={logoImage} alt="register-image" />
+            <img src={logoImage} alt="register" />
             <div className="register-body-form">
               {responseOfApiForgot && (
                 <Alert variant={responseOfApiForgot.type}>

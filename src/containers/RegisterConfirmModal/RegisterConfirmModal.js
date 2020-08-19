@@ -14,7 +14,11 @@ const RegisterConfirmModal = ({
         <Modal.Title>
           <div className="btn-with-loading">
             {isLoadingRegisterConfirmModal && (
-              <img className="loading" src={loading} />
+              <img
+                alt="confirm modal loading"
+                className="loading"
+                src={loading}
+              />
             )}
             Confirm Email
           </div>
@@ -22,10 +26,14 @@ const RegisterConfirmModal = ({
       </Modal.Header>
       <Modal.Body className="loading-modal">
         <div className="register-body">
-          <img src={logoImage} alt="register-image" />
+          <img src={logoImage} alt="register" />
           <div className="newsletter-body-form">
             {isLoadingRegisterConfirmModal && (
-              <img className="loading" src={loading} />
+              <img
+                alt="confirm modal loading"
+                className="loading"
+                src={loading}
+              />
             )}
             {!isLoadingRegisterConfirmModal && (
               <Alert variant={'success'}>

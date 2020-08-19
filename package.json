@@ -10,6 +10,10 @@
     "airbnb": "0.0.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
     "prettier": "^2.0.5",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
@@ -18,7 +22,7 @@
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "3.4.0",
     "use-query-params": "^1.1.6"
   },
   "scripts": {
@@ -26,9 +30,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
