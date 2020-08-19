@@ -135,38 +135,63 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicPassword">
                 <div>
                   <h5>ACKNOWLEDGEMENT OF RISKS AND OBLIGATIONS OF MEMBERS</h5>
-                  <p>
-                    This acknowledgement of risks applies to all club activities
-                    I may undertake as a member of Iranian Bushwalkers (The
-                    Club). In voluntarily participating in activities of the
-                    Club which are described to me by the activity leaders I am
-                    aware that my participation in the activities may expose me
-                    to hazards and risks that could lead to injury, illness or
-                    death or to loss of or damage to my property. I also
-                    acknowledge that I may encounter weather conditions that
-                    could lead to hypothermia and being in locations where
-                    evacuation for medical treatment may take hours or days. In
-                    particular when participating in abseiling or above the
-                    snowline activities I am aware that these activities could
-                    expose me to additional hazards and risks described to me by
-                    the activity leader. To minimise risks I will endeavour to
-                    ensure that 1. Each activity is within my capabilities, 2. I
-                    am carrying food, water and equipment appropriate for the
-                    activity. 3. I will advise the activity leader if I am
-                    taking any medication or have any physical or other
-                    limitation that might affect my participation in the
-                    activity. 4. I will make every effort to remain with the
-                    rest of the party during the activity 5. I will advise the
-                    leader of any concerns I am having, and 6. I will comply
-                    with all reasonable instructions of club officers and the
-                    activity leader. I have read and understand the above
-                    requirements. I have considered the risks before choosing to
-                    sign this acknowledgement of risk. I still wish to join the
-                    activities of the Club. I acknowledge that I will take
-                    responsibility for my own actions and that signing this form
-                    and the payment of my subscription will be deemed as full
-                    acceptance and understanding of the above conditions.
-                  </p>
+                  <div>
+                    <p>
+                      This acknowledgement of risks applies to all club
+                      activities I may undertake as a member of Iranian
+                      Bushwalkers (The Club).
+                      <br />
+                      In voluntarily participating in activities of the Club
+                      which are described to me by the activity leaders I am
+                      aware that my participation in the activities may expose
+                      me to hazards and risks that could lead to injury, illness
+                      or death or to loss of or damage to my property.
+                      <br />
+                      I also acknowledge that I may encounter weather conditions
+                      that could lead to hypothermia and being in locations
+                      where evacuation for medical treatment may take hours or
+                      days. In particular when participating in abseiling or
+                      above the snowline activities I am aware that these
+                      activities could expose me to additional hazards and risks
+                      described to me by the activity leader.
+                      <br />
+                      To minimise risks I will endeavour to ensure that
+                      <br />
+                    </p>
+                    <ul>
+                      <li>1. Each activity is within my capabilities </li>
+                      <li>
+                        2. I am carrying food, water and equipment appropriate
+                        for the activity.{' '}
+                      </li>
+                      <li>
+                        3. I will advise the activity leader if I am taking any
+                        medication or have any physical or other limitation that
+                        might affect my participation in the activity.{' '}
+                      </li>
+                      <li>
+                        4. I will make every effort to remain with the rest of
+                        the party during the activity{' '}
+                      </li>
+                      <li>
+                        5. I will advise the leader of any concerns I am having,
+                        and{' '}
+                      </li>
+                      <li>
+                        6. I will comply with all reasonable instructions of
+                        club officers and the activity leader.
+                      </li>
+                    </ul>
+                    <p>
+                      I have read and understand the above requirements. I have
+                      considered the risks before choosing to sign this
+                      acknowledgement of risk. I still wish to join the
+                      activities of the Club. I acknowledge that I will take
+                      responsibility for my own actions and that signing this
+                      form and the payment of my subscription will be deemed as
+                      full acceptance and understanding of the above conditions.
+                    </p>
+                  </div>
                 </div>
                 <Form.Check
                   onChange={(event) =>

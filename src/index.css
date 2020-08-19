@@ -10,6 +10,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+a {
+  cursor: pointer;
+}
 .header-light .navbar .logo-dark {
   height: 70px;
 }
@@ -101,6 +104,11 @@ a.menu-item:hover {
   color: #333;
   font-size: 30px;
   padding: 0 10px;
+}
+.form-group ul {
+  padding-left: 10px;
+  color: #a3a3a3;
+  font-size: 13px;
 }
 @media only screen and (max-width: 991px) {
   ul.dropdown-menu {
