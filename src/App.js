@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { QueryParamProvider } from 'use-query-params'
 import Home from './containers/Home/Home'
 import About from './containers/About/About'
 import GradingSystemGuidline from './containers/GradingSystemGuidline/GradingSystemGuidline'
@@ -8,7 +9,6 @@ import UseFulLinks from './containers/UseFulLinks/UseFulLinks'
 import CodeOfConduct from './containers/CodeOfConduct/CodeOfConduct'
 import Contact from './containers/Contact/Contact'
 import MyApp from './contexts/MyApp'
-import { QueryParamProvider } from 'use-query-params'
 
 export default function App() {
   const [userData, setUserData] = useState({})

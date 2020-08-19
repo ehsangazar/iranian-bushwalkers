@@ -2,17 +2,17 @@ import React from 'react'
 
 const SinglePostSection = ({ title, descirption }) => {
   return (
-    <section id="workSingle" class="work work-single ">
-      <div class="container-content">
-        <div class="row">
-          <div class="">
-            <div class="work--title">
+    <section id="workSingle" className="work work-single ">
+      <div className="container-content">
+        <div className="row">
+          <div className="">
+            <div className="work--title">
               <h3>{title}</h3>
             </div>
           </div>
-          <div class="">
+          <div className="">
             <div
-              class="work--content"
+              className="work--content"
               dangerouslySetInnerHTML={{
                 __html: descirption,
               }}

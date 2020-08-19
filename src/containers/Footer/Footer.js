@@ -1,4 +1,5 @@
 import React from 'react'
+
 const Footer = () => {
   return (
     <footer id="footer" className="footer footer-1 footer-light">
