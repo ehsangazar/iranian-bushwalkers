@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import logoImage from './logo.png'
+import Modals from '../Modals/Modals'
 import { Link, useRouteMatch } from 'react-router-dom'
-import { BsFillCaretDownFill } from 'react-icons/bs'
+import { BsFillCaretDownFill, BsList } from 'react-icons/bs'
+import MyApp from '../../contexts/MyApp'
+import { Button } from 'react-bootstrap'
 
 const Header = () => {
+  const app = useContext(MyApp)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   let match = useRouteMatch()
 
@@ -11,13 +15,20 @@ const Header = () => {
     setShowMobileMenu(!showMobileMenu)
   }
 
-  console.log('match', match)
+  const handleOpenRegisterModal = () => {
+    app.modal.setModalToShow('register')
+  }
+
+  const handleOpenLoginModal = () => {
+    app.modal.setModalToShow('login')
+  }
 
   return (
     <header
       id="navbar-spy"
       className="header header-2 header-topbar header-light header-fixed"
     >
+      <Modals />
       <div id="top-bar" className="top-bar bg-theme">
         <div className="container">
           <div className="row clearfix">
@@ -56,7 +67,7 @@ const Header = () => {
             aria-label="Toggle navigation"
             onClick={handleToggleShowMobileMenu}
           >
-            <span className="navbar-toggler-icon"></span>
+            <BsList />
           </button>
 
           <div
@@ -70,11 +81,7 @@ const Header = () => {
               <li
                 className={`has-dropdown ${match.path === '/' ? 'active' : ''}`}
               >
-                <Link
-                  data-toggle="dropdown"
-                  className="dropdown-toggle menu-item"
-                  to="/"
-                >
+                <Link data-toggle="dropdown" className="menu-item" to="/">
                   Home
                 </Link>
               </li>
@@ -84,11 +91,7 @@ const Header = () => {
                   match.path === '/about' ? 'active' : ''
                 }`}
               >
-                <Link
-                  data-toggle="dropdown"
-                  className="dropdown-toggle menu-item"
-                  to="/about"
-                >
+                <Link data-toggle="dropdown" className="menu-item" to="/about">
                   About
                 </Link>
               </li>
@@ -101,7 +104,7 @@ const Header = () => {
                 <a
                   href="http://facebook.com/iranianBushwalkers/events"
                   data-toggle="dropdown"
-                  className="dropdown-toggle menu-item"
+                  className="menu-item"
                 >
                   Events
                 </a>
@@ -111,7 +114,7 @@ const Header = () => {
                 <a
                   href="/#"
                   data-toggle="dropdown"
-                  className="dropdown-toggle menu-item"
+                  className="menu-item"
                   data-hover="shop"
                 >
                   More
@@ -143,7 +146,7 @@ const Header = () => {
               >
                 <Link
                   data-toggle="dropdown"
-                  className="dropdown-toggle menu-item"
+                  className="menu-item"
                   to="/contact"
                 >
                   Contact
@@ -151,14 +154,16 @@ const Header = () => {
               </li>
             </ul>
 
-            <div className="module-container">
+            <div className="module-container buttons-header">
               <div className="module module-consultation pull-left">
-                <a
-                  href="https://www.joinit.org/o/iranian-bushwalkers"
-                  className="btn btn-success"
-                >
-                  Membership
-                </a>
+                <Button onClick={handleOpenRegisterModal} variant="success">
+                  Register
+                </Button>
+              </div>
+              <div className="module module-consultation pull-left">
+                <Button onClick={handleOpenLoginModal} variant="warning">
+                  Login
+                </Button>
               </div>
             </div>
           </div>

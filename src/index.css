@@ -62,9 +62,51 @@ nav#primary-menu {
 .work-single .work--title h3 {
   margin-bottom: 20px;
 }
-
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 10000;
+}
+.modal-open .modal img {
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+}
+.register-body {
+  display: flex;
+  flex-direction: column;
+}
+.code-of-conduct-checkbox {
+  display: flex;
+}
+a.menu-item:hover {
+  text-decoration: none;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttons-header button {
+  margin: 0 5px;
+}
+.btn-menu {
+  width: 20px;
+}
+.navbar-dark .navbar-toggler {
+  color: #333 !important;
+  font-size: 30px;
+}
+.modal button.close {
+  color: #333;
+  font-size: 30px;
+  padding: 0 10px;
+}
 @media only screen and (max-width: 991px) {
   ul.dropdown-menu {
     display: block;
+  }
+  .btn {
+    width: 100%;
   }
 }
