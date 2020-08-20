@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../Layout/Layout'
 import ImageContent from '../ImageContent/ImageContent'
+import PricingPlans from '../PricingPlans/PricingPlans'
 import Banner from '../Banner/Banner'
 import BannerImage from './banner.jpg'
 import AboutImage from './about.jpg'
@@ -25,6 +26,7 @@ const Home = () => {
           title={`Leave the Nature as you found it. Take nothing but memories,
           leave nothing but footprints!`}
         />
+        <PricingPlans />
         <ImageContent
           flip
           title={'Unseen beauty'}
