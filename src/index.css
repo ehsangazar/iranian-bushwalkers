@@ -119,6 +119,23 @@ a.menu-item:hover {
   padding: 0 11px;
   margin: 0;
 }
+.btn-with-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-with-loading .loading {
+  width: 30px;
+  height: 30px;
+  margin: 0 !important;
+  padding: 0 4px;
+}
+.modal-open .modal img.loading {
+  width: 30px;
+  height: 30px;
+  margin: 0 !important;
+  padding: 0 4px;
+}
 @media only screen and (max-width: 991px) {
   ul.dropdown-menu {
     display: block;

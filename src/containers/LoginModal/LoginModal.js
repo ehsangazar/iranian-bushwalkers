@@ -19,7 +19,7 @@ const LoginModal = ({
         <Modal.Header closeButton>
           <Modal.Title>
             <div className="btn-with-loading">
-              {isLoadingLoginForm && (
+              {true && (
                 <img alt="login modal" className="loading" src={loading} />
               )}
               Login
