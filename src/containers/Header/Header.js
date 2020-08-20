@@ -4,7 +4,7 @@ import Modals from '../Modals/Modals'
 import { Link, useRouteMatch } from 'react-router-dom'
 import { BsFillCaretDownFill, BsList } from 'react-icons/bs'
 import MyApp from '../../contexts/MyApp'
-import { Button } from 'react-bootstrap'
+import { Button, DropdownButton, Dropdown } from 'react-bootstrap'
 
 const Header = () => {
   const app = useContext(MyApp)
@@ -21,6 +21,11 @@ const Header = () => {
 
   const handleOpenLoginModal = () => {
     app.modal.setModalToShow('login')
+  }
+
+  const handleLogOut = () => {
+    localStorage.setItem('token', '')
+    app.user.setUserData({})
   }
 
   return (
@@ -154,18 +159,28 @@ const Header = () => {
               </li>
             </ul>
 
-            <div className="module-container buttons-header">
-              <div className="module module-consultation pull-left">
-                <Button onClick={handleOpenRegisterModal} variant="success">
-                  Register
-                </Button>
+            {!app.user.userData.id && (
+              <div className="module-container buttons-header">
+                <div className="module module-consultation pull-left">
+                  <Button onClick={handleOpenRegisterModal} variant="success">
+                    Register
+                  </Button>
+                </div>
+                <div className="module module-consultation pull-left">
+                  <Button onClick={handleOpenLoginModal} variant="warning">
+                    Login
+                  </Button>
+                </div>
               </div>
-              <div className="module module-consultation pull-left">
-                <Button onClick={handleOpenLoginModal} variant="warning">
-                  Login
-                </Button>
+            )}
+            {app.user.userData.id && (
+              <div className="module-container buttons-header loggedin">
+                <h5>Hello {app.user.userData.first_name}!</h5>
+                <DropdownButton id="dropdown-basic-button" title="Profile">
+                  <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
+                </DropdownButton>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </nav>

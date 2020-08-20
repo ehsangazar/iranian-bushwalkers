@@ -8,7 +8,7 @@ const fetchHandler = ({
 }) => {
   const request = {
     method: method,
-    url: `http://localhost:5050${url}`,
+    url: `https://backend.ib.org.au${url}`,
   }
   if (body) {
     request.data = body

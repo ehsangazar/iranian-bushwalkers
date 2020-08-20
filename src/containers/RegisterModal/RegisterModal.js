@@ -38,6 +38,7 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicText">
                 <Form.Label>First Name</Form.Label>
                 <Form.Control
+                  required
                   onChange={(event) =>
                     handleChangeRegisterForm('first_name', event)
                   }
@@ -49,6 +50,7 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicText">
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control
+                  required
                   onChange={(event) =>
                     handleChangeRegisterForm('last_name', event)
                   }
@@ -60,6 +62,7 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
+                  required
                   onChange={(event) => handleChangeRegisterForm('email', event)}
                   type="email"
                   value={formRegisterValues.email}
@@ -69,6 +72,7 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Mobile</Form.Label>
                 <Form.Control
+                  required
                   onChange={(event) =>
                     handleChangeRegisterForm('mobile', event)
                   }
@@ -80,6 +84,7 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Full Address</Form.Label>
                 <Form.Control
+                  required
                   onChange={(event) =>
                     handleChangeRegisterForm('address', event)
                   }
@@ -91,6 +96,7 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Postcode</Form.Label>
                 <Form.Control
+                  required
                   onChange={(event) =>
                     handleChangeRegisterForm('postcode', event)
                   }
@@ -102,6 +108,7 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Emergency Contact Name</Form.Label>
                 <Form.Control
+                  required
                   onChange={(event) =>
                     handleChangeRegisterForm('emergency-name', event)
                   }
@@ -113,6 +120,7 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Emergency Contact Number</Form.Label>
                 <Form.Control
+                  required
                   onChange={(event) =>
                     handleChangeRegisterForm('emergency-number', event)
                   }
@@ -124,6 +132,7 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  required
                   onChange={(event) =>
                     handleChangeRegisterForm('password', event)
                   }
@@ -195,7 +204,7 @@ const RegisterModal = ({
                 </div>
                 <Form.Check
                   onChange={(event) =>
-                    handleChangeRegisterForm('checkbox-risk', event)
+                    handleChangeRegisterForm('checkbox-risk', event, 'checkbox')
                   }
                   type="checkbox"
                   label="I agree to the text above"
@@ -204,9 +213,13 @@ const RegisterModal = ({
               <Form.Group controlId="formBasicPassword">
                 <div className="code-of-conduct-checkbox">
                   <Form.Check
-                    onChange={(event) =>
-                      handleChangeRegisterForm('checkbox-conduct', event)
-                    }
+                    onChange={(event) => {
+                      handleChangeRegisterForm(
+                        'checkbox-conduct',
+                        event,
+                        'checkbox'
+                      )
+                    }}
                     type="checkbox"
                     label=""
                   />

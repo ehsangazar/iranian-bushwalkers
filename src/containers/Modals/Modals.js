@@ -82,7 +82,14 @@ const Modals = () => {
     setShowConfirmEmailModal(true)
   }
 
-  const handleChangeRegisterForm = (name, event) => {
+  const handleChangeRegisterForm = (name, event, type = 'input') => {
+    if (type === 'checkbox') {
+      setFormRegisterValues({
+        ...formRegisterValues,
+        [name]: formRegisterValues[name] ? 0 : 1,
+      })
+      return
+    }
     if (event) event.preventDefault()
     setFormRegisterValues({
       ...formRegisterValues,
@@ -113,8 +120,49 @@ const Modals = () => {
 
   const handleSubmitRegister = async (event) => {
     if (event) event.preventDefault()
-    setIsLoadingRegisterForm(true)
+    const error = []
+    if (!formRegisterValues.email) {
+      error.push('email')
+    }
+    if (!formRegisterValues.first_name) {
+      error.push('first_name')
+    }
+    if (!formRegisterValues.last_name) {
+      error.push('last_name')
+    }
+    if (!formRegisterValues.mobile) {
+      error.push('mobile')
+    }
+    if (!formRegisterValues.address) {
+      error.push('address')
+    }
+    if (!formRegisterValues['emergency-name']) {
+      error.push('emergency-name')
+    }
+    if (!formRegisterValues['emergency-number']) {
+      error.push('emergency-number')
+    }
+    if (!formRegisterValues.postcode) {
+      error.push('postcode')
+    }
+    if (!formRegisterValues.password) {
+      error.push('password')
+    }
+    if (!formRegisterValues['checkbox-risk']) {
+      error.push('checkbox-risk')
+    }
+    if (!formRegisterValues['checkbox-conduct']) {
+      error.push('checkbox-conduct')
+    }
+    if (error.length > 0) {
+      setResponseOfApiRegister({
+        type: 'danger',
+        message: 'Please check the form again',
+      })
+      return
+    }
 
+    setIsLoadingRegisterForm(true)
     try {
       const result = await fetchHandler({
         method: 'POST',
@@ -124,6 +172,13 @@ const Modals = () => {
           first_name: formRegisterValues.first_name,
           last_name: formRegisterValues.last_name,
           password: formRegisterValues.password,
+          mobile: formRegisterValues.mobile,
+          address: formRegisterValues.address,
+          postcode: formRegisterValues.postcode,
+          emergency_name: formRegisterValues['emergency-name'],
+          emergency_number: formRegisterValues['emergency-number'],
+          acknowledgement: formRegisterValues['checkbox-risk'],
+          code_conduct: formRegisterValues['checkbox-conduct'],
         },
       })
       if (result.data.success) {
@@ -131,7 +186,7 @@ const Modals = () => {
         setResponseOfApiRegister({
           type: 'success',
           message:
-            'با تشکر، ایمیلی به شما ارسال شده است، لطفا آن‌را باز کنید و روی گزینه تایید ایمیل کلیک نمایید.',
+            'Thank you, An email has been sent to you, please open it and click to confirm your email',
         })
         updateUser()
         setTimeout(() => {
@@ -165,7 +220,7 @@ const Modals = () => {
         localStorage.setItem('token', result.data.jwt.token)
         setResponseOfApiLogin({
           type: 'success',
-          message: 'شما با موفقیت وارد شده‌اید',
+          message: 'You have successfully logged in',
         })
         updateUser()
         setTimeout(() => {
@@ -197,7 +252,7 @@ const Modals = () => {
       })
       setResponseOfApiForgot({
         type: 'success',
-        message: 'دستور‌العمل بازیابی کلمه عبور به ایمیل شما ارسال شد.',
+        message: 'The reset password instruction has been sent to your email',
       })
       updateUser()
       setTimeout(() => {
@@ -214,7 +269,8 @@ const Modals = () => {
     if (formResetValues.password !== formResetValues['password-confirmation']) {
       setResponseOfApiReset({
         type: 'danger',
-        message: 'کلمه عبور و تکرار آن با هم مطابقت ندارند',
+        message:
+          'Password and Confirm Password do not match, please check them again',
       })
       return
     }
@@ -232,7 +288,7 @@ const Modals = () => {
       if (result.data.success) {
         setResponseOfApiReset({
           type: 'success',
-          message: 'با تشکر، شما با موفقیت کلمه عبور را تغییر دادید',
+          message: 'Thank you, you have reset your password successfully',
         })
         updateUser()
         setTimeout(() => {

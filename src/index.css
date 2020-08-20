@@ -110,6 +110,15 @@ a.menu-item:hover {
   color: #a3a3a3;
   font-size: 13px;
 }
+.loggedin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loggedin h5 {
+  padding: 0 11px;
+  margin: 0;
+}
 @media only screen and (max-width: 991px) {
   ul.dropdown-menu {
     display: block;
