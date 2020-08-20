@@ -100,6 +100,19 @@ const Header = () => {
                   About
                 </Link>
               </li>
+              <li
+                className={`has-dropdown ${
+                  match.path === '/membership' ? 'active' : ''
+                }`}
+              >
+                <Link
+                  data-toggle="dropdown"
+                  className="menu-item"
+                  to="/membership"
+                >
+                  Membership
+                </Link>
+              </li>
 
               <li
                 className={`has-dropdown ${

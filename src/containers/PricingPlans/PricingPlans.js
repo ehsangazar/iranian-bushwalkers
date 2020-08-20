@@ -9,17 +9,13 @@ const PricingPlans = () => {
             <div className="heading heading-1 mb-50">
               <p className="heading--subtitle">Our Pricing Plans</p>
               <h2 className="heading--title">
-                The Best Offers &amp; Price Plans For You!
+                Find the best offer to enjoy our events
               </h2>
               <p className="heading--desc mb-25">
-                Find the perfect plan for your business, vision dominates a lot
-                of our interpretation of the world. A design studio founded in
-                London and expanded our services &amp; become a multinational
-                firm, offering services Worldwide.
+                We have two types of membership, find the one that suits you
+                better and continue further to buy or subscribe. There are so
+                many members in our group and we would love to have you, too.
               </p>
-              <a href="#" className="btn--underlined">
-                compare plans
-              </a>
             </div>
           </div>
           <div className="col-sm-12 col-md-12 col-lg-7">
@@ -28,26 +24,26 @@ const PricingPlans = () => {
                 <div className="price-table text--center">
                   <div className="pricing-panel pricing-active">
                     <div className="pricing--heading">
-                      <h4>Starter Plan</h4>
+                      <h4>Annual Plan</h4>
                       <div className="pricing--desc">
-                        Perfect for small business
+                        Perfect for active hikers
                       </div>
                       <p>
-                        <span className="currency">$</span>50{' '}
-                        <span className="time"> / Monthly</span>
+                        <span className="currency">A$</span>50{' '}
+                        <span className="time"> / year</span>
                       </p>
                     </div>
 
                     <div className="pricing--body">
                       <ul className="pricing--list list-unstyled">
-                        <li>Five Brand Monitors</li>
-                        <li>Five Keyword Monitors</li>
-                        <li>Basic Quota , PDF reports</li>
-                        <li>500 Search Results </li>
+                        <li>Join all Hiking events</li>
+                        <li>Join all Movie events</li>
+                        <li>Join all reading book events</li>
+                        <li>Enjoy special offers and discounts</li>
                       </ul>
                     </div>
                     <a className="btn btn--primary" href="#">
-                      Purchase Now
+                      Subscribe now
                     </a>
                   </div>
                 </div>
@@ -56,26 +52,24 @@ const PricingPlans = () => {
                 <div className="price-table text--center">
                   <div className="pricing-panel">
                     <div className="pricing--heading">
-                      <h4>Advanced Plan</h4>
+                      <h4>Temporary Ticket</h4>
                       <div className="pricing--desc">
-                        Perfect for bigger interpieces
+                        Perfect for being a guest
                       </div>
                       <p>
-                        <span className="currency">$</span>99{' '}
-                        <span className="time"> / Monthly</span>
+                        <span className="currency">$</span>10{' '}
+                        <span className="time"> / event</span>
                       </p>
                     </div>
 
                     <div className="pricing--body">
                       <ul className="pricing--list list-unstyled">
-                        <li>Five Brand Monitors</li>
-                        <li>Five Keyword Monitors</li>
-                        <li>Basic Quota , PDF reports</li>
-                        <li>500 Search Results </li>
+                        <li>Join the event</li>
+                        <li>Enjoy the networking with others</li>
                       </ul>
                     </div>
                     <a className="btn btn--primary btn--bordered" href="#">
-                      Purchase Now
+                      Purchase now
                     </a>
                   </div>
                 </div>

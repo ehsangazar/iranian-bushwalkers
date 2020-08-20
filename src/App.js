@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { QueryParamProvider } from 'use-query-params'
 import Home from './containers/Home/Home'
 import About from './containers/About/About'
+import Membership from './containers/Membership/Membership'
 import GradingSystemGuidline from './containers/GradingSystemGuidline/GradingSystemGuidline'
 import PrivacyPolicy from './containers/PrivacyPolicy/PrivacyPolicy'
 import UseFulLinks from './containers/UseFulLinks/UseFulLinks'
@@ -45,6 +46,9 @@ export default function App() {
               </Route>
               <Route path="/grading-system-guideline">
                 <GradingSystemGuidline />
+              </Route>
+              <Route path="/membership">
+                <Membership />
               </Route>
               <Route path="/about">
                 <About />
