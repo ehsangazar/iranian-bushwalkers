@@ -65,13 +65,17 @@ const SingleUser = (props) => {
               <Alert variant={'danger'} style={{width:'100%'}}>
                   Your membership with Iranian Bushwalkers has been expired
               </Alert> 
+              <Alert variant={'danger'} style={{width:'100%'}}>
+                  To renew your membership please <a href={`/membership`}>click here </a>
+              </Alert> 
             </Row>
           )}
           <Row>
             <Col>
-              <Row>
+              <Row style={{padding: '20px'}}>
                 <Col sm={3}>
                   <img style={{width: '100%', paddingRight: '10px'}} src={userDetails.image} alt={`${userDetails.first_name} ${userDetails.last_name}`} />
+                  <Space />
                 </Col>
                 <Col>
                   <Row>

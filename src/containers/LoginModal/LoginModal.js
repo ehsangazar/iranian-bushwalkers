@@ -24,8 +24,6 @@ const LoginModal = ({
                 <img alt="login modal" className="loading" src={loading} />
               )}
               Login
-
-              verificationEmail
             </div>
           </Modal.Title>
         </Modal.Header>

@@ -45,7 +45,7 @@ const Members = () => {
         <ContentMiddleBackgroundSolid title="Members" />
         <Space />
         <Container>
-          <Row>
+          <Row style={{padding: '20px'}}>
             <Table striped bordered hover>
               <tbody>
                 {users.map(user => (
