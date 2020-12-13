@@ -2,7 +2,7 @@
   "name": "iranian-bushwalkers",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://ib.ehsangazar.com",
+  "homepage": "https://app.ib.org.au",
   "dependencies": {
     "@babel/core": "7.8.4",
     "@svgr/webpack": "4.3.3",
