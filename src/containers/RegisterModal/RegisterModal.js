@@ -241,6 +241,11 @@ const RegisterModal = ({
           >
             Register
           </Button>
+          {responseOfApiRegister && (
+            <Alert variant={responseOfApiRegister.type}>
+              {responseOfApiRegister.message}
+            </Alert>
+          )}
         </Modal.Footer>
       </Form>
     </Modal>

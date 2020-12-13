@@ -91,15 +91,30 @@ const Header = () => {
                 </Link>
               </li>
 
-              <li
-                className={`has-dropdown ${
-                  match.path === '/about' ? 'active' : ''
-                }`}
-              >
-                <Link data-toggle="dropdown" className="menu-item" to="/about">
+              <li className={`has-dropdown`}>
+                <a
+                  href="/#"
+                  data-toggle="dropdown"
+                  className="menu-item"
+                  data-hover="shop"
+                >
                   About
-                </Link>
+                  {` `}
+                  <BsFillCaretDownFill />
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link to="/about">
+                      Who we are
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/board-members">Board Members</Link>
+                  </li>
+                </ul>
               </li>
+
+
               <li
                 className={`has-dropdown ${
                   match.path === '/membership' ? 'active' : ''

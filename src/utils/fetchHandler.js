@@ -8,7 +8,8 @@ const fetchHandler = ({
 }) => {
   const request = {
     method: method,
-    url: `https://backend.ib.org.au${url}`,
+    // url: `https://backend.ib.org.au${url}`,
+    url: `http://127.0.0.1:3000${url}`,
   }
   if (body) {
     request.data = body

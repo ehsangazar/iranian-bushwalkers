@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { QueryParamProvider } from 'use-query-params'
 import Home from './containers/Home/Home'
 import About from './containers/About/About'
+import BoardMembers from './containers/BoardMembers/BoardMembers'
 import Membership from './containers/Membership/Membership'
 import GradingSystemGuidline from './containers/GradingSystemGuidline/GradingSystemGuidline'
 import PrivacyPolicy from './containers/PrivacyPolicy/PrivacyPolicy'
 import UseFulLinks from './containers/UseFulLinks/UseFulLinks'
 import CodeOfConduct from './containers/CodeOfConduct/CodeOfConduct'
+import SingleUser from './containers/SingleUser/SingleUser'
 import Contact from './containers/Contact/Contact'
 import MyApp from './contexts/MyApp'
 
@@ -52,6 +54,12 @@ export default function App() {
               </Route>
               <Route path="/about">
                 <About />
+              </Route>
+              <Route path="/board-members">
+                <BoardMembers />
+              </Route>
+              <Route path="/user/:id">
+                <SingleUser />
               </Route>
               <Route path="/">
                 <Home />
