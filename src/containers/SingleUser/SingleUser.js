@@ -9,6 +9,7 @@ import LoadingPage from '../LoadingPage/LoadingPage'
 import {
   useParams
 } from "react-router-dom";
+import { format, differenceInDays } from 'date-fns'
 
 const SingleUser = (props) => {
   const [userDetails, setUserDetails] = useState({})
@@ -33,6 +34,10 @@ const SingleUser = (props) => {
   useEffect(()=>{
     getUser()
   }, [])
+
+  const getStatus = () => {
+    return userDetails.role==='admin' || differenceInDays(new Date(userDetails.expiry_date), new Date()) > 1
+  }
   
 
   if (!userDetails) {
@@ -65,6 +70,14 @@ const SingleUser = (props) => {
                         <tr>
                           <td>Role</td>
                           <td>{userDetails.role==='admin' ? 'Board Member' : 'Member'}</td>
+                        </tr>
+                        <tr>
+                          <td>Expiry Date</td>
+                          <td>{format(new Date(userDetails.expiry_date),'dd/MM/yyyy')}</td>
+                        </tr>
+                        <tr>
+                          <td>Status</td>
+                          <td style={{color: getStatus()?'green':'red'}}>{getStatus() ? 'Active' : 'Expired'}</td>
                         </tr>
                         <tr>
                           <td>Membership</td>

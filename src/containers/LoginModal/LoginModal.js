@@ -2,6 +2,7 @@ import React from 'react'
 import { Modal, Alert, Form, Button } from 'react-bootstrap'
 import loading from '../Icon/loading.gif'
 import logoImage from '../Header/logo.png'
+import { Link } from 'react-router-dom'
 
 const LoginModal = ({
   showLoginModal,
@@ -23,6 +24,8 @@ const LoginModal = ({
                 <img alt="login modal" className="loading" src={loading} />
               )}
               Login
+
+              verificationEmail
             </div>
           </Modal.Title>
         </Modal.Header>
@@ -33,6 +36,16 @@ const LoginModal = ({
               {responseOfApiLogin && (
                 <Alert variant={responseOfApiLogin.type}>
                   {responseOfApiLogin.message}
+                </Alert>
+              )}
+              {responseOfApiLogin && responseOfApiLogin.notActive && (
+                <Alert variant={responseOfApiLogin.type}>
+                  You need to verify your email first, please check your mail and click on {`"Confirm Email"`} button.
+                </Alert>
+              )}
+              {responseOfApiLogin && responseOfApiLogin.notActive && (
+                <Alert variant={responseOfApiLogin.type}>
+                  if you have not recieved any email, <a href={`/?verificationEmail=${responseOfApiLogin.id}`}>click here </a>
                 </Alert>
               )}
               <Form.Group controlId="formBasicEmail">

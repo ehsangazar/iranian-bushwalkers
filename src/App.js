@@ -5,6 +5,7 @@ import Home from './containers/Home/Home'
 import About from './containers/About/About'
 import BoardMembers from './containers/BoardMembers/BoardMembers'
 import Membership from './containers/Membership/Membership'
+import Members from './containers/Members/Members'
 import GradingSystemGuidline from './containers/GradingSystemGuidline/GradingSystemGuidline'
 import PrivacyPolicy from './containers/PrivacyPolicy/PrivacyPolicy'
 import UseFulLinks from './containers/UseFulLinks/UseFulLinks'
@@ -57,6 +58,9 @@ export default function App() {
               </Route>
               <Route path="/board-members">
                 <BoardMembers />
+              </Route>
+              <Route path="/members">
+                <Members />
               </Route>
               <Route path="/user/:id">
                 <SingleUser />

@@ -111,6 +111,9 @@ const Header = () => {
                   <li>
                     <Link to="/board-members">Board Members</Link>
                   </li>
+                  <li>
+                    <Link to="/members">Members</Link>
+                  </li>
                 </ul>
               </li>
 
@@ -205,7 +208,8 @@ const Header = () => {
               <div className="module-container buttons-header loggedin">
                 <h5>Hello {app.user.userData.first_name}!</h5>
                 <DropdownButton id="dropdown-basic-button" title="Profile">
-                  <Dropdown.Item onClick={handleLogOut}>Log Out</Dropdown.Item>
+                  <Dropdown.Item href={`/user/${app.user.userData.id}`}>My Profile</Dropdown.Item>
+                  <Dropdown.Item onClick={handleLogOut}>Log out</Dropdown.Item>
                 </DropdownButton>
               </div>
             )}

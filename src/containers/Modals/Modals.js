@@ -6,6 +6,7 @@ import ForgotModal from '../ForgotModal/ForgotModal'
 import RegisterModal from '../RegisterModal/RegisterModal'
 import ResetModal from '../ResetModal/ResetModal'
 import RegisterConfirmModal from '../RegisterConfirmModal/RegisterConfirmModal'
+import RegisterSendVerificationEmailModal from '../RegisterSendVerificationEmailModal/RegisterSendVerificationEmailModal'
 import MyApp from '../../contexts/MyApp'
 
 const Modals = () => {
@@ -19,6 +20,7 @@ const Modals = () => {
   const [showLoginModal, setShowLoginModal] = useState(false)
   const [showForgotModal, setShowForgotModal] = useState(false)
   const [showResetModal, setShowResetModal] = useState(false)
+  const [showSendVerificationEmailModal, setShowSendVerificationEmailModal] = useState(false)
   const [showConfirmEmailModal, setShowConfirmEmailModal] = useState(false)
 
   const [isLoadingRegisterForm, setIsLoadingRegisterForm] = useState(false)
@@ -29,6 +31,10 @@ const Modals = () => {
     isLoadingRegisterConfirmModal,
     setIsLoadingRegisterConfirmModal,
   ] = useState(false)
+  const [
+    isLoadingRegisterSendEmailVerificationModal,
+    setIsLoadingRegisterSendEmailVerificationModal,
+  ] = useState(false)
   const [isLoadingProfile, setIsLoadingProfile] = useState(false)
 
   const [responseOfApiRegister, setResponseOfApiRegister] = useState(null)
@@ -38,6 +44,10 @@ const Modals = () => {
 
   const [forgotEmailToken, setForgotEmailToken] = useQueryParam(
     'forgotEmailToken',
+    StringParam
+  )
+  const [verificationEmail, setVerificationEmail] = useQueryParam(
+    'verificationEmail',
     StringParam
   )
   const [registerEmailToken, setRegisterEmailToken] = useQueryParam(
@@ -61,6 +71,10 @@ const Modals = () => {
     app.modal.setModalToShow('')
     setShowResetModal(false)
   }
+  const handleCloseSendVerificationEmailModal = () => {
+    app.modal.setModalToShow('')
+    setShowSendVerificationEmailModal(false)
+  }
   const handleCloseConfirmEmailModal = () => {
     app.modal.setModalToShow('')
     setShowConfirmEmailModal(false)
@@ -77,6 +91,9 @@ const Modals = () => {
   }
   const handleOpenResetModal = () => {
     setShowResetModal(true)
+  }
+  const handleOpenVerifyingSendEmailModal = () => {
+    setShowSendVerificationEmailModal(true)
   }
   const handleOpenConfirmEmailModal = () => {
     setShowConfirmEmailModal(true)
@@ -189,9 +206,6 @@ const Modals = () => {
             'Thank you, An email has been sent to you, please open it and click to confirm your email',
         })
         updateUser()
-        setTimeout(() => {
-          handleCloseRegisterModal()
-        }, 2000)
       } else {
         setResponseOfApiRegister({
           type: 'danger',
@@ -224,11 +238,14 @@ const Modals = () => {
         })
         updateUser()
         setTimeout(() => {
+          updateUser()
           handleCloseLoginModal()
-        }, 1000)
+        }, 2000)
       } else {
         setResponseOfApiLogin({
           type: 'danger',
+          notActive: result.data.message,
+          id: result.data.id,
           message: result.data.message,
         })
       }
@@ -322,6 +339,22 @@ const Modals = () => {
     }
     setIsLoadingRegisterConfirmModal(false)
   }
+  const handleSubmitSendVerificationEmail = async () => {
+    setIsLoadingRegisterSendEmailVerificationModal(true)
+    try {
+      await fetchHandler({
+        method: 'POST',
+        url: '/api/v1/user/sendVerificationEmail',
+        body: {
+          id: verificationEmail,
+        },
+      })
+      updateUser()
+    } catch (e) {
+      console.error(e)
+    }
+    setIsLoadingRegisterSendEmailVerificationModal(false)
+  }
 
   const handleClickOnLogOut = () => {
     localStorage.setItem('token', '')
@@ -335,6 +368,14 @@ const Modals = () => {
   useEffect(() => {
     if (forgotEmailToken) {
       handleOpenResetModal()
+      resetUrl()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (verificationEmail) {
+      handleOpenVerifyingSendEmailModal()
+      handleSubmitSendVerificationEmail()
       resetUrl()
     }
   }, [])
@@ -425,6 +466,11 @@ const Modals = () => {
         handleSubmitReset={handleSubmitReset}
         handleChangeResetForm={handleChangeResetForm}
         responseOfApiReset={responseOfApiReset}
+      />
+      <RegisterSendVerificationEmailModal
+        showSendVerificationEmailModal={showSendVerificationEmailModal}
+        handleCloseSendVerificationEmailModal={handleCloseSendVerificationEmailModal}
+        isLoadingRegisterSendEmailVerificationModal={isLoadingRegisterSendEmailVerificationModal}
       />
       <RegisterConfirmModal
         showConfirmEmailModal={showConfirmEmailModal}
