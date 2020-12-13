@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
 import { QueryParamProvider } from 'use-query-params'
 import Home from './containers/Home/Home'
 import About from './containers/About/About'
@@ -17,6 +17,15 @@ import MyApp from './contexts/MyApp'
 export default function App() {
   const [userData, setUserData] = useState({})
   const [modalToShow, setModalToShow] = useState(null)
+  let history = useHistory();
+
+  useEffect(()=>{
+    let path = localStorage.getItem('path');
+    if(path) {
+      localStorage.removeItem('path');
+      history.push([path]);
+    }
+  },[])
 
   return (
     <Router>

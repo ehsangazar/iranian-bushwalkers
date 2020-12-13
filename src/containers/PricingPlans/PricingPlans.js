@@ -68,7 +68,7 @@ const PricingPlans = () => {
                         <li>Enjoy the networking with others</li>
                       </ul>
                     </div>
-                    <a className="btn btn--primary btn--bordered" href="#">
+                    <a className="btn btn--primary btn--bordered" target="_blank" rel="noopener noreferrer" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U4NH8SNY9Y7LQ">
                       Purchase now
                     </a>
                   </div>
