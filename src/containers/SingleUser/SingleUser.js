@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Layout from '../Layout/Layout'
 import ContentMiddleBackgroundSolid from '../ContentMiddleBackgroundSolid/ContentMiddleBackgroundSolid'
-import { Container, Row , Col, Table } from 'react-bootstrap'
+import { Container, Row , Col, Table, Alert } from 'react-bootstrap'
 import Space from '../Space/Space'
 import fetchHandler from '../../utils/fetchHandler'
 import NotFound from '../NotFound/NotFound'
+import MyApp from '../../contexts/MyApp'
 import LoadingPage from '../LoadingPage/LoadingPage'
 import {
   useParams
@@ -14,6 +15,7 @@ import { format, differenceInDays } from 'date-fns'
 const SingleUser = (props) => {
   const [userDetails, setUserDetails] = useState({})
   let params = useParams();
+  const app = useContext(MyApp)
 
   const getUser = async () => {
     try {
@@ -36,7 +38,7 @@ const SingleUser = (props) => {
   }, [])
 
   const getStatus = () => {
-    return userDetails.role==='admin' || differenceInDays(new Date(userDetails.expiry_date), new Date()) > 1
+    return userDetails.role ==='admin' || differenceInDays(new Date(userDetails.expiry_date), new Date()) > 1
   }
   
 
@@ -55,8 +57,16 @@ const SingleUser = (props) => {
     <div>
       <Layout>
         <ContentMiddleBackgroundSolid title={`${userDetails.first_name} ${userDetails.last_name}`} />
+
         <Space />
         <Container style={{maxWidth: '1000px'}}>
+          {app.user.userData.id === userDetails.id && !getStatus() && (
+            <Row>
+              <Alert variant={'danger'} style={{width:'100%'}}>
+                  Your membership with Iranian Bushwalkers has been expired
+              </Alert> 
+            </Row>
+          )}
           <Row>
             <Col>
               <Row>
