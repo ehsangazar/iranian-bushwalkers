@@ -14,6 +14,7 @@ import SingleUser from './containers/SingleUser/SingleUser'
 import Contact from './containers/Contact/Contact'
 import MyApp from './contexts/MyApp'
 
+
 export default function App() {
   const [userData, setUserData] = useState({})
   const [modalToShow, setModalToShow] = useState(null)
@@ -64,6 +65,9 @@ export default function App() {
               </Route>
               <Route path="/user/:id">
                 <SingleUser />
+              </Route>
+              <Route path="/">
+                <Home />
               </Route>
               <Route path="/">
                 <Home />

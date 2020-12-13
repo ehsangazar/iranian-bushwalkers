@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../Layout/Layout'
 import ImageContent from '../ImageContent/ImageContent'
 import PricingPlans from '../PricingPlans/PricingPlans'
@@ -7,8 +7,22 @@ import BannerImage from './banner.jpg'
 import AboutImage from './about.jpg'
 import UnSeenImage from './unseen.png'
 import ContentMiddleWhiteBackground from '../ContentMiddleWhiteBackground/ContentMiddleWhiteBackground'
+import { useHistory } from 'react-router-dom'
 
 const Home = () => {
+  let history = useHistory();
+
+  useEffect(()=>{
+    setTimeout(() => {
+      if (!history) return
+      const newPath = localStorage.getItem('redirected_path')
+      if (newPath) {
+        history.push(newPath);
+        localStorage.setItem('redirected_path','')
+      }
+    }, 100);
+  }, [])
+
   return (
     <div>
       <Layout>
