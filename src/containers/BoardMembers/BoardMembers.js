@@ -7,6 +7,10 @@ import ehsan from "./ehsan.png"
 import golsa from "./golsa.png"
 import tannaz from "./tannaz.png"
 import hamed from "./hamed.png"
+import kazem from "./kazem.png"
+import borzu from "./borzu.png"
+import kamran from "./kamran.png"
+import amir from "./amir.png"
 import { Container, Row , Col, Table } from 'react-bootstrap'
 import Space from '../Space/Space'
 import { Link } from 'react-router-dom'
@@ -50,6 +54,30 @@ const BoardMembers = () => {
                   <td>Tannaz Ketabi</td>
                   <td>Board Member</td>
                   <td><Link to="/user/bce86ba0-3d3d-11eb-9f66-b90bc4559cd7">View</Link></td>
+                </tr>
+                <tr>
+                  <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={amir} alt="Amir Hakimian" /></td>
+                  <td>Amir Hakimian</td>
+                  <td>Board Member</td>
+                  <td><Link to="/user/a4ea8990-3dae-11eb-9f66-b90bc4559cd7">View</Link></td>
+                </tr>
+                <tr>
+                  <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={kamran} alt="Kamran Motamedi" /></td>
+                  <td>Kamran Motamedi</td>
+                  <td>Board Member</td>
+                  <td><Link to="/user/bdc0b180-3db1-11eb-9f66-b90bc4559cd7">View</Link></td>
+                </tr>
+                <tr>
+                  <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={kazem} alt="Kazem Ghabraie" /></td>
+                  <td>Kazem Ghabraie</td>
+                  <td>Board Member</td>
+                  <td><Link to="/user/9eb2fff0-3d93-11eb-9f66-b90bc4559cd7">View</Link></td>
+                </tr>
+                <tr>
+                  <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={borzu} alt="Borzou Hosseini" /></td>
+                  <td>Borzou Hosseini</td>
+                  <td>Board Member</td>
+                  <td><Link to="/user/bfa0e030-3dd2-11eb-9f66-b90bc4559cd7">View</Link></td>
                 </tr>
               </tbody>
             </Table>
