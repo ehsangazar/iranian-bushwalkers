@@ -112,6 +112,9 @@ const Header = () => {
                     <Link to="/board-members">Board Members</Link>
                   </li>
                   <li>
+                    <Link to="/leaders">Leaders</Link>
+                  </li>
+                  <li>
                     <Link to="/members">Members</Link>
                   </li>
                 </ul>
@@ -132,18 +135,8 @@ const Header = () => {
                 </Link>
               </li>
 
-              <li
-                className={`has-dropdown ${
-                  match.path === '/events' ? 'active' : ''
-                }`}
-              >
-                <a
-                  href="http://facebook.com/iranianBushwalkers/events"
-                  data-toggle="dropdown"
-                  className="menu-item"
-                >
-                  Events
-                </a>
+              <li className={`has-dropdown`}>
+                <Link to="/events">Events</Link>
               </li>
 
               <li className={`has-dropdown`}>
@@ -204,15 +197,31 @@ const Header = () => {
                 </div>
               </div>
             )}
-            {app.user.userData.id && (
-              <div className="module-container buttons-header loggedin">
-                <h5>Hello {app.user.userData.first_name}!</h5>
-                <DropdownButton id="dropdown-basic-button" title="Profile">
-                  <Dropdown.Item href={`/user/${app.user.userData.id}`}>My Profile</Dropdown.Item>
-                  <Dropdown.Item onClick={handleLogOut}>Log out</Dropdown.Item>
-                </DropdownButton>
-              </div>
-            )}
+            <div>
+              {app.user.userData.id && (
+                <div className="module-container buttons-header loggedin">
+                  <DropdownButton id="dropdown-basic-button" title={`Hello ${app.user.userData.first_name}!`}>
+                    <Dropdown.Item href={`/user/${app.user.userData.id}`}>My Profile</Dropdown.Item>
+                    <Dropdown.Item onClick={handleLogOut}>Log out</Dropdown.Item>
+                    {app.user.userData.id && app.user.userData.role === 'admin' && (
+                      <div>
+                        <Dropdown.Divider />
+                        <Dropdown.Item
+                          href={`/#`}
+                          style={{
+                            backgroundColor: '#000000',
+                            color: 'white'
+                          }}
+                        >Admin
+                        </Dropdown.Item>
+                        <Dropdown.Divider />
+                        <Dropdown.Item href={`/transactions`}>Transactions</Dropdown.Item>
+                      </div>
+                    )}
+                  </DropdownButton>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>

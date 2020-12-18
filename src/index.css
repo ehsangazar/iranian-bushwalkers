@@ -1,9 +1,15 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Roboto', sans-serif !important;
+}
 body {
   margin: 0;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
+  font-weight: 300;
 }
 
 code {
@@ -135,6 +141,51 @@ a.menu-item:hover {
   height: 30px;
   margin: 0 !important;
   padding: 0 4px;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgb(52 160 88 / 14%) !important;
+}
+.table-bordered td {
+  vertical-align: middle !important;
+}
+.modal-footer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.modal-footer .btn {
+  width: 100%;
+}
+a:not([href]):not([tabindex]):focus,
+a:not([href]):not([tabindex]):hover {
+  color: #037bfe;
+}
+.content-middle {
+  background-color: #049544;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 0 50px 0;
+}
+.content-middle .row {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content-middle .row h2 {
+  color: white;
+}
+.table-bordered thead td,
+.table-bordered thead th {
+  font-weight: 400;
+  padding: 3px 10px;
+  background-color: #019643;
+  color: white;
+}
+.work--title {
+  width: 100%;
 }
 @media only screen and (max-width: 991px) {
   ul.dropdown-menu {

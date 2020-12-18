@@ -6,6 +6,9 @@ import About from './containers/About/About'
 import BoardMembers from './containers/BoardMembers/BoardMembers'
 import Membership from './containers/Membership/Membership'
 import Members from './containers/Members/Members'
+import Events from './containers/Events/Events'
+import Transactions from './containers/Transactions/Transactions'
+import Leaders from './containers/Leaders/Leaders'
 import GradingSystemGuidline from './containers/GradingSystemGuidline/GradingSystemGuidline'
 import PrivacyPolicy from './containers/PrivacyPolicy/PrivacyPolicy'
 import UseFulLinks from './containers/UseFulLinks/UseFulLinks'
@@ -63,11 +66,17 @@ export default function App() {
               <Route path="/members">
                 <Members />
               </Route>
+              <Route path="/leaders">
+                <Leaders />
+              </Route>
               <Route path="/user/:id">
                 <SingleUser />
               </Route>
-              <Route path="/">
-                <Home />
+              <Route path="/events">
+                <Events />
+              </Route>
+              <Route path="/transactions">
+                <Transactions />
               </Route>
               <Route path="/">
                 <Home />

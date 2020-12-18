@@ -93,6 +93,7 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
+  font-weight: 300;
 }
 
 *,
@@ -152,7 +153,7 @@ body {
   background-color: #ffffff;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
   color: #9b9b9b;
   margin: 0;
 }
@@ -222,7 +223,7 @@ h4,
 h5,
 h6 {
   color: #282828;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   font-weight: 800;
   margin: 0 0 28px;
   line-height: 1;
@@ -354,7 +355,7 @@ p {
 }
 
 .font-heading {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
 }
 
 .font-body {
@@ -1159,7 +1160,7 @@ section {
 .blockquote,
 blockquot {
   font-size: 20px;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #9b9b9b;
   font-style: normal;
   line-height: 28px;
@@ -2159,7 +2160,7 @@ ul.dot-list li:before {
 }
 
 .tabs-vertical.tabs .tab-content > .tab-pane p {
-  color: #a5a5a5;
+  color: #282828;
   font-size: 16px;
   font-weight: 300;
   line-height: 26px;
@@ -2277,7 +2278,7 @@ ul.dot-list li:before {
 .pagination > li > span {
   background-color: #f9f9f9;
   color: #282828;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   font-size: 20px;
   font-weight: 700;
   border: none;
@@ -2755,7 +2756,7 @@ body.modal-open .affix {
 .navbar .navbar-nav > li > a {
   font-size: 14px;
   text-transform: capitalize;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 100px;
   color: #ffffff;
   padding: 0;
@@ -3470,7 +3471,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 .module-sidearea .module-sidearea-wrap .sidearea-header p {
   font-family: 'Poppins', sans-serif;
-  color: #a5a5a5;
+  color: #282828;
   font-size: 13px;
   font-weight: 400;
   line-height: 25px;
@@ -3552,7 +3553,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 .module-search-box .form-control {
   position: relative;
   color: #ffffff;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   font-size: 35px;
   font-weight: 400;
   line-height: 70px;
@@ -4448,15 +4449,15 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   margin-bottom: 18px;
 }
 .heading .heading--title {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   font-size: 36px;
   line-height: 49px;
   margin-bottom: 20px;
 }
 .heading .heading--desc {
-  color: #a5a5a5;
+  color: #282828;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 25px;
   margin-bottom: 0;
 }
@@ -4521,7 +4522,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   text-transform: capitalize;
 }
 .skills .progress-title .value {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #cccccc;
   font-size: 13px;
   line-height: 19px;
@@ -4582,7 +4583,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   padding-bottom: 210px;
 }
 .slider .slider--subheadline {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #ffffff;
   font-size: 20px;
   font-weight: 600;
@@ -4800,7 +4801,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   display: inline-block;
   background-color: #089444;
   color: white;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   font-size: 12px;
   font-weight: 400;
   text-transform: capitalize;
@@ -4982,7 +4983,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   margin-bottom: 30px;
 }
 .blog-single .entry--tags a {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   display: inline-block;
   background-color: #089444;
   font-size: 12px;
@@ -5102,7 +5103,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   line-height: 22px;
 }
 .blog-single ul.comments-list .comment-body .comment .date {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #616161;
   font-family: 'Poppins', sans-serif;
   font-size: 12px;
@@ -5285,7 +5286,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   z-index: 2;
 }
 .product-item .product--price {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #089444;
   font-size: 17px;
   font-weight: 800;
@@ -5472,7 +5473,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   line-height: 49px;
 }
 .single-product .product-quantity .qua {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #282828;
   font-size: 15px;
   font-weight: 700;
@@ -5568,7 +5569,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   color: #282828;
   font-size: 14px;
   font-weight: 700;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   text-transform: capitalize;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -5906,9 +5907,9 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   text-align: left;
 }
 .work-single .work--content p {
-  color: #9b9b9b;
+  color: #222;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 24px;
   margin-bottom: 23px;
 }
@@ -6167,7 +6168,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 
 .widget-tags a {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   display: inline-block;
   background-color: #089444;
   font-size: 12px;
@@ -6213,7 +6214,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 
 .widget-recent-posts .entry .entry--title a {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #282828;
   font-size: 15px;
   font-weight: 600;
@@ -6324,7 +6325,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 
 .widget-recent-products .product .product-title a {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #282828;
   font-size: 15px;
   font-weight: 800;
@@ -6761,12 +6762,12 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 .pricing .pricing-panel .pricing--heading .pricing--desc {
   font-size: 12px;
-  color: #a5a5a5;
+  color: #282828;
   line-height: 1;
   margin-bottom: 38px;
 }
 .pricing .pricing-panel .pricing--heading p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   font-size: 70px;
   font-weight: 700;
   color: #282828;
@@ -7182,7 +7183,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   position: relative;
 }
 .testimonial-panel .testimonial--body p {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   font-size: 23px;
   font-style: italic;
   font-weight: 600;
@@ -7386,7 +7387,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   padding: 90px 0;
 }
 .counter .count-box .counting {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #089444;
   font-size: 50px;
   font-weight: 700;
@@ -7545,7 +7546,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 
 .page-404 p {
-  color: #a5a5a5;
+  color: #282828;
   font-size: 15px;
   font-weight: 400;
   line-height: 23px;
@@ -7583,7 +7584,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 
 .page-maintenance p {
-  color: #a5a5a5;
+  color: #282828;
   font-size: 15px;
   font-weight: 400;
   line-height: 23px;
@@ -7621,7 +7622,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 
 .page-soon p {
-  color: #a5a5a5;
+  color: #282828;
   font-size: 15px;
   font-weight: 400;
   line-height: 23px;
@@ -7654,7 +7655,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 
 .countdown-amount {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
   color: #089444;
   font-size: 80px;
   font-weight: 600;
@@ -7978,7 +7979,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   margin-bottom: 36px;
 }
 .footer .widget--content p {
-  color: #a5a5a5;
+  color: #282828;
   font-size: 13px;
   font-weight: 400;
   line-height: 25px;
@@ -7989,7 +7990,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
 }
 .footer .widget--newsletter p {
   font-size: 12px;
-  color: #a5a5a5;
+  color: #282828;
   margin-bottom: 21px;
 }
 .footer .widget--newsletter form {
@@ -8073,7 +8074,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   text-transform: capitalize;
   font-family: 'Poppins', sans-serif;
   line-height: 21px;
-  color: #a5a5a5;
+  color: #282828;
 }
 .footer .widget--contact-info li:last-child {
   margin-top: 26px;
@@ -8083,7 +8084,7 @@ ul.dropdown-menu > li.has-dropdown > a:before {
   border-top: 2px solid #2b2b2b;
   padding: 33px 0;
   font-size: 14px;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto Sans', sans-serif;
 }
 
 .footer--copyright-links {

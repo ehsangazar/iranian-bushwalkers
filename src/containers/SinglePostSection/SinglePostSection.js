@@ -5,10 +5,8 @@ const SinglePostSection = ({ title, descirption }) => {
     <section id="workSingle" className="work work-single ">
       <div className="container-content">
         <div className="row">
-          <div className="">
-            <div className="work--title">
-              <h3>{title}</h3>
-            </div>
+          <div className="work--title">
+            <h3>{title}</h3>
           </div>
           <div className="">
             <div

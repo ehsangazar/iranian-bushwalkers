@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import fetchHandler from '../../utils/fetchHandler'
 import LoadingPage from '../LoadingPage/LoadingPage'
 
-const Members = () => {
+const Events = () => {
   const [users, setUsers] = useState([])
   const [filteredUsers, setFilteredUsers] = useState([])
   const [search, setSearch] = useState(null)
@@ -62,7 +62,7 @@ const Members = () => {
   return (
     <div>
       <Layout>
-        <ContentMiddleBackgroundSolid title="Members" />
+        <ContentMiddleBackgroundSolid title="Events" />
         <Space />
         <Container>
           <Row style={{
@@ -76,14 +76,29 @@ const Members = () => {
               width: '100%'
             }}
             >
-              <h3>Search Members</h3>
+              <h3>Search</h3>
               <Form.Control
                 onChange={handleSearch}
                 type="text"
                 value={search}
-                placeholder="Search Members"                
+                placeholder="Search here"                
               />
             </Form.Group>
+            <Row>
+              <p style={{padding: '0', margin: 0, fontSize: 15}}>
+                You can also checkout all the events on 
+                <a
+                  href="http://facebook.com/iranianBushwalkers/events"
+                  data-toggle="dropdown"
+                  className="menu-item"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{paddingLeft: '5px'}}
+                >
+                  Facebook
+                </a>
+              </p>
+            </Row>
           </Row>
           <Row style={{padding: '20px'}}>
             <Table striped bordered hover>
@@ -92,10 +107,7 @@ const Members = () => {
                   <tr>
                     <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={user.image} alt={`${user.first_name} ${user.last_name}`} /></td>
                     <td>{`${user.first_name} ${user.last_name}`}</td>
-                    <td>
-                      {user.role==='admin' ? 'Board Member' : 'Member'}
-                      {user.leader ? ', Leader' : ''}
-                    </td>
+                    <td>{user.role==='admin' ? 'Board Member' : 'Member'}</td>
                     <td><Link to={`/user/${user.id}`}>View</Link></td>
                   </tr>
                 ))}
@@ -109,4 +121,4 @@ const Members = () => {
   )
 }
 
-export default Members
+export default Events

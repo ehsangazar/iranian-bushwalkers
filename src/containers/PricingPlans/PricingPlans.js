@@ -1,6 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import MyApp from '../../contexts/MyApp'
+import { Button } from 'react-bootstrap'
+import Space from '../Space/Space'
 
 const PricingPlans = () => {
+  const app = useContext(MyApp)
+
+  const handleOpenTempMembership = (event) => {
+    if (event && !app.user.userData.id) event.preventDefault()
+    if (!app.user.userData.id) app.modal.setModalToShow('login')    
+  }
+
+  const handleOpenAnnualMembership = (event) => {
+    if (event && !app.user.userData.id) event.preventDefault()
+    if (!app.user.userData.id) app.modal.setModalToShow('login')    
+  }
+
+  const handleSubmitTransactionId = () => {
+    if (!app.user.userData.id) {
+      app.modal.setModalToShow('login') 
+      return 
+    }
+    app.modal.setModalToShow('transaction')
+  }
+
   return (
     <section id="pricing1" className="pricing pricing-1 bg-gray">
       <div className="container">
@@ -16,6 +39,28 @@ const PricingPlans = () => {
                 better and continue further to buy or subscribe. There are so
                 many members in our group and we would love to have you, too.
               </p>
+              <h5>Follow these steps to renew a membership</h5>
+              <ul>
+                <li>
+                  1. Register/Login and validate your email
+                </li>
+                <li>
+                  2. Pay your choose of membershp
+                </li>
+                <li>
+                  3. Submit your transaction id
+                </li>
+                <li>
+                  <Space />
+                  <Button
+                    variant="primary"
+                    type="button"
+                    onClick={handleSubmitTransactionId}
+                  >
+                  Submit Transaction ID
+                  </Button>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="col-sm-12 col-md-12 col-lg-7">
@@ -42,7 +87,7 @@ const PricingPlans = () => {
                         <li>Enjoy special offers and discounts</li>
                       </ul>
                     </div>
-                    <a className="btn btn--primary" href="#">
+                    <a className="btn btn--primary btn--bordered" onClick={handleOpenAnnualMembership} target="_blank" rel="noopener noreferrer" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UDP3PM3GDFWFS">
                       Subscribe now
                     </a>
                   </div>
@@ -68,7 +113,7 @@ const PricingPlans = () => {
                         <li>Enjoy the networking with others</li>
                       </ul>
                     </div>
-                    <a className="btn btn--primary btn--bordered" target="_blank" rel="noopener noreferrer" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U4NH8SNY9Y7LQ">
+                    <a onClick={handleOpenTempMembership} className="btn btn--primary btn--bordered" target="_blank" rel="noopener noreferrer" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U4NH8SNY9Y7LQ">
                       Purchase now
                     </a>
                   </div>

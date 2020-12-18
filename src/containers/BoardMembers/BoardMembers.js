@@ -9,6 +9,8 @@ import tannaz from "./tannaz.png"
 import hamed from "./hamed.png"
 import kazem from "./kazem.png"
 import borzu from "./borzu.png"
+import negar from "./negar.png"
+import hoda from "./hoda.png"
 import kamran from "./kamran.png"
 import amir from "./amir.png"
 import { Container, Row , Col, Table } from 'react-bootstrap'
@@ -19,7 +21,7 @@ const BoardMembers = () => {
   return (
     <div>
       <Layout>
-        <ContentMiddleBackgroundSolid title="BoardMembers" />
+        <ContentMiddleBackgroundSolid title="Board Members" />
         <Space />
         <Container>
           <Row style={{padding: '20px'}}>
@@ -30,6 +32,12 @@ const BoardMembers = () => {
                   <td>Hamid Ashouri</td>
                   <td>President</td>
                   <td><Link to="/user/33888620-e2d8-11ea-8d34-959e666cf071">View</Link></td>
+                </tr>
+                <tr>
+                  <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={negar} alt="Negar Asadian" /></td>
+                  <td>Negar Asadian</td>
+                  <td>Vice President</td>
+                  <td><Link to="/user/fc58ffd0-3e7c-11eb-9f66-b90bc4559cd7">View</Link></td>
                 </tr>
                 <tr>
                   <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={ehsan} alt="Ehsan Gazar" /></td>
@@ -78,6 +86,12 @@ const BoardMembers = () => {
                   <td>Borzou Hosseini</td>
                   <td>Board Member</td>
                   <td><Link to="/user/bfa0e030-3dd2-11eb-9f66-b90bc4559cd7">View</Link></td>
+                </tr>
+                <tr>
+                  <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={hoda} alt="Hoda Barazandeh" /></td>
+                  <td>Hoda Barazandeh</td>
+                  <td>Board Member</td>
+                  <td><Link to="/user/4dfd7ef0-3eba-11eb-9f66-b90bc4559cd7">View</Link></td>
                 </tr>
               </tbody>
             </Table>

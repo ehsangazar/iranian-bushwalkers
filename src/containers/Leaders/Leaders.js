@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import fetchHandler from '../../utils/fetchHandler'
 import LoadingPage from '../LoadingPage/LoadingPage'
 
-const Members = () => {
+const Leaders = () => {
   const [users, setUsers] = useState([])
   const [filteredUsers, setFilteredUsers] = useState([])
   const [search, setSearch] = useState(null)
@@ -20,8 +20,9 @@ const Members = () => {
         url: `/api/v1/user/members`,
       })
       if (result?.data?.success) {
-        setUsers(result.data.users)
-        setFilteredUsers(result.data.users)
+        const leaderUsers = result.data.users.filter(item=>item.leader)
+        setUsers(leaderUsers)
+        setFilteredUsers(leaderUsers)
       } else {
         setUsers([])
         setFilteredUsers([])
@@ -62,7 +63,7 @@ const Members = () => {
   return (
     <div>
       <Layout>
-        <ContentMiddleBackgroundSolid title="Members" />
+        <ContentMiddleBackgroundSolid title="Leaders" />
         <Space />
         <Container>
           <Row style={{
@@ -76,12 +77,12 @@ const Members = () => {
               width: '100%'
             }}
             >
-              <h3>Search Members</h3>
+              <h3>Search Leaders</h3>
               <Form.Control
                 onChange={handleSearch}
                 type="text"
                 value={search}
-                placeholder="Search Members"                
+                placeholder="Search Leaders"                
               />
             </Form.Group>
           </Row>
@@ -109,4 +110,4 @@ const Members = () => {
   )
 }
 
-export default Members
+export default Leaders

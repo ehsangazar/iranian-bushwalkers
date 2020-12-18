@@ -11,6 +11,7 @@ const LoginModal = ({
   isLoadingLoginForm,
   handleSubmitLogin,
   handleChangeLoginForm,
+  handleOpenRegisterModal,
   responseOfApiLogin,
   handleOpenForgotModal,
 }) => {
@@ -67,7 +68,23 @@ const LoginModal = ({
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer>          
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={isLoadingLoginForm} 
+          >
+            Login
+          </Button>
+          <a
+            className="link"
+            onClick={() => {
+              handleOpenRegisterModal()
+              handleCloseLoginModal()
+            }}
+          >
+            Do not have an account, Register First
+          </a>
           <a
             className="link"
             onClick={() => {
@@ -77,9 +94,6 @@ const LoginModal = ({
           >
             Forgot your password?
           </a>
-          <Button variant="primary" type="submit" disabled={isLoadingLoginForm}>
-            Login
-          </Button>
         </Modal.Footer>
       </Form>
     </Modal>

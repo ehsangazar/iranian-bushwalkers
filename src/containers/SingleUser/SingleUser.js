@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Layout from '../Layout/Layout'
 import ContentMiddleBackgroundSolid from '../ContentMiddleBackgroundSolid/ContentMiddleBackgroundSolid'
-import { Container, Row , Col, Table, Alert } from 'react-bootstrap'
+import { Container, Row , Col, Table, Alert, Badge } from 'react-bootstrap'
 import Space from '../Space/Space'
 import fetchHandler from '../../utils/fetchHandler'
 import NotFound from '../NotFound/NotFound'
@@ -14,6 +14,8 @@ import { format, differenceInDays } from 'date-fns'
 
 const SingleUser = (props) => {
   const [userDetails, setUserDetails] = useState({})
+  const [tempMembership, setTempMemberships] = useState([])
+  const [annualMembership, setAnnualMemberships] = useState([])
   let params = useParams();
   const app = useContext(MyApp)
 
@@ -25,8 +27,31 @@ const SingleUser = (props) => {
       })
       if (result?.data?.success) {
         setUserDetails(result.data.user)
+        getMembership(result.data.user.id)
       } else {
         setUserDetails(null)
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+  const getMembership = async (userId) => {
+    try {
+      const result = await fetchHandler({
+        method: 'POST',
+        url: `/api/v1/membership/search`,
+        body: {
+          userId,
+        }
+      })
+      if (result?.data?.success) {
+        setTempMemberships(result.data.memberships
+                        .filter(membership => membership.membership_type === "temp"))
+        setAnnualMemberships(result.data.memberships
+                        .filter(membership => membership.membership_type === "annual"))
+      } else {
+        setTempMemberships(null)
+        setAnnualMemberships(null)
       }
     } catch (e) {
       console.error(e)
@@ -36,13 +61,8 @@ const SingleUser = (props) => {
   useEffect(()=>{
     getUser()
   }, [])
-
-  const getStatus = () => {
-    return userDetails.role ==='admin' || differenceInDays(new Date(userDetails.expiry_date), new Date()) > 1
-  }
   
-
-  if (!userDetails) {
+  if (userDetails === null) {
     return (
       <NotFound />
     )
@@ -52,7 +72,7 @@ const SingleUser = (props) => {
       <LoadingPage />
     )
   }
-
+  
   return (
     <div>
       <Layout>
@@ -60,16 +80,6 @@ const SingleUser = (props) => {
 
         <Space />
         <Container style={{maxWidth: '1000px'}}>
-          {app.user.userData.id === userDetails.id && !getStatus() && (
-            <Row>
-              <Alert variant={'danger'} style={{width:'100%'}}>
-                  Your membership with Iranian Bushwalkers has been expired
-              </Alert> 
-              <Alert variant={'danger'} style={{width:'100%'}}>
-                  To renew your membership please <a href={`/membership`}>click here </a>
-              </Alert> 
-            </Row>
-          )}
           <Row>
             <Col>
               <Row style={{padding: '20px'}}>
@@ -82,29 +92,108 @@ const SingleUser = (props) => {
                     <Table striped bordered hover>
                       <tbody>
                         <tr>
+                          <td>Name</td>
+                          <td>
+                            {`${userDetails.first_name} ${userDetails.last_name}`}
+                          </td>
+                        </tr>
+                        <tr>
                           <td>Role</td>
-                          <td>{userDetails.role==='admin' ? 'Board Member' : 'Member'}</td>
-                        </tr>
-                        <tr>
-                          <td>Expiry Date</td>
-                          <td>{format(new Date(userDetails.expiry_date),'dd/MM/yyyy')}</td>
-                        </tr>
-                        <tr>
-                          <td>Status</td>
-                          <td style={{color: getStatus()?'green':'red'}}>{getStatus() ? 'Active' : 'Expired'}</td>
-                        </tr>
-                        <tr>
-                          <td>Membership</td>
-                          <td>{userDetails.role==='admin' ? 'Active' : 'Member'}</td>
+                          <td>
+                            {userDetails.role==='admin' ? 'Board Member' : 'Member'}
+                            {userDetails.leader ? ', Leader' : ''}
+                          </td>
                         </tr>
                       </tbody>
                     </Table>
                   </Row>
                   <Row>
                     <Space />
-                    <h2>
+                    <h5>
+                      Temporary Membership
+                    </h5>
+                    <Space />
+                    <div style={{width: '100%'}}>
+                      {(!tempMembership || tempMembership.length === 0) && 
+                        <Alert variant="warning">No temp membership is available</Alert>
+                      }
+                    </div>
+                    {tempMembership.length > 0 && (
+                      <Table striped bordered hover>
+                        <thead>
+                          <tr>
+                            <td>Transaction ID</td>
+                            <td>Purchase Date</td>
+                            <td>Status</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {tempMembership
+                          .map(membership => (
+                            <tr>
+                              <td>
+                                {membership.transaction_id}
+                              </td>
+                              <td>
+                                {format(new Date(membership.created_at),'MM/dd/yyyy')}
+                              </td>
+                              <td>
+                                {membership.used?<Badge variant="danger">Used</Badge>:<Badge variant="success">Active</Badge>}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                  )}
+                  </Row>
+                  <Row>
+                    <Space />
+                    <h5>
+                      Annual Membership
+                    </h5>
+                    <Space />
+                    <div style={{width: '100%'}}>
+                      {(!annualMembership || annualMembership.length === 0) && 
+                        <Alert variant="warning">No annual membership is available</Alert>
+                      }
+                    </div>
+                    {annualMembership.length > 0 && (
+                      <Table striped bordered hover>
+                        <thead>
+                          <tr>
+                            <td>Transaction ID</td>
+                            <td>Purchase Date</td>
+                            <td>Expiray Date</td>
+                            <td>Status</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {annualMembership
+                          .map(membership => (
+                            <tr>
+                              <td>
+                                {membership.transaction_id}
+                              </td>
+                              <td>
+                                {format(new Date(membership.created_at),'MM/dd/yyyy')}
+                              </td>
+                              <td>
+                                {format(new Date(userDetails.expiry_date),'MM/dd/yyyy')}
+                              </td>
+                              <td>
+                                {differenceInDays(new Date(membership.created_at),new Date(userDetails.expiry_date)) > 1?<Badge variant="danger">Used</Badge>:<Badge variant="success">Active</Badge>}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                    )}
+                  </Row>
+                  <Row>
+                    <Space />
+                    <h5>
                       Events
-                    </h2>
+                    </h5>
                     <Space />
                     <Table striped bordered hover>
                       <tbody>

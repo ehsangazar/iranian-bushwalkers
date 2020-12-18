@@ -26,7 +26,6 @@ const Home = () => {
   return (
     <div>
       <Layout>
-        <Banner image={BannerImage} />
         <ImageContent
           title={'Iranian Bushwalkers'}
           description={

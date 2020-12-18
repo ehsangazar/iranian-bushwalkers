@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useQueryParam, StringParam } from 'use-query-params'
 import fetchHandler from '../../utils/fetchHandler'
 import LoginModal from '../LoginModal/LoginModal'
+import TransactionModal from '../TransactionModal/TransactionModal'
 import ForgotModal from '../ForgotModal/ForgotModal'
 import RegisterModal from '../RegisterModal/RegisterModal'
 import ResetModal from '../ResetModal/ResetModal'
@@ -12,6 +13,7 @@ import MyApp from '../../contexts/MyApp'
 const Modals = () => {
   const app = useContext(MyApp)
   const [formRegisterValues, setFormRegisterValues] = useState({})
+  const [formTransactionValues, setFormTransactionValues] = useState({})
   const [formLoginValues, setFormLoginValues] = useState({})
   const [formForgotValues, setFormForgotValues] = useState({})
   const [formResetValues, setFormResetValues] = useState({})
@@ -22,11 +24,13 @@ const Modals = () => {
   const [showResetModal, setShowResetModal] = useState(false)
   const [showSendVerificationEmailModal, setShowSendVerificationEmailModal] = useState(false)
   const [showConfirmEmailModal, setShowConfirmEmailModal] = useState(false)
+  const [showTransactionModal, setShowTransactionModal] = useState(false)
 
   const [isLoadingRegisterForm, setIsLoadingRegisterForm] = useState(false)
   const [isLoadingLoginForm, setIsLoadingLoginForm] = useState(false)
   const [isLoadingForgotForm, setIsLoadingForgotForm] = useState(false)
   const [isLoadingResetForm, setIsLoadingResetForm] = useState(false)
+  const [isLoadingTransactionForm, setIsLoadingTransactionForm] = useState(false)
   const [
     isLoadingRegisterConfirmModal,
     setIsLoadingRegisterConfirmModal,
@@ -41,6 +45,7 @@ const Modals = () => {
   const [responseOfApiLogin, setResponseOfApiLogin] = useState(null)
   const [responseOfApiForgot, setResponseOfApiForgot] = useState(null)
   const [responseOfApiReset, setResponseOfApiReset] = useState(null)
+  const [responseOfTransactionApi, setResponseOfTransactionApi] = useState(null)
 
   const [forgotEmailToken, setForgotEmailToken] = useQueryParam(
     'forgotEmailToken',
@@ -71,6 +76,10 @@ const Modals = () => {
     app.modal.setModalToShow('')
     setShowResetModal(false)
   }
+  const handleCloseTransactionModal = () => {
+    app.modal.setModalToShow('')
+    setShowTransactionModal(false)
+  }
   const handleCloseSendVerificationEmailModal = () => {
     app.modal.setModalToShow('')
     setShowSendVerificationEmailModal(false)
@@ -97,6 +106,9 @@ const Modals = () => {
   }
   const handleOpenConfirmEmailModal = () => {
     setShowConfirmEmailModal(true)
+  }
+  const handleOpenTransactionModal = () => {
+    setShowTransactionModal(true)
   }
 
   const handleChangeRegisterForm = (name, event, type = 'input') => {
@@ -131,6 +143,13 @@ const Modals = () => {
     if (event) event.preventDefault()
     setFormResetValues({
       ...formResetValues,
+      [name]: event.target.value,
+    })
+  }
+  const handleChangeTransactionModal = (name, event) => {
+    if (event) event.preventDefault()
+    setFormTransactionValues({
+      ...formTransactionValues,
       [name]: event.target.value,
     })
   }
@@ -253,6 +272,49 @@ const Modals = () => {
       console.error(e)
     }
     setIsLoadingLoginForm(false)
+  }
+
+  const handleSubmitTransactionForm = async (event) => {
+    if (event) event.preventDefault()
+    setIsLoadingTransactionForm(true)
+    if (!formTransactionValues.membership){
+      setResponseOfTransactionApi({
+        type: 'warning',
+        message: 'Please check out all the fields',
+      })
+      setIsLoadingTransactionForm(false)
+      return
+    }
+    try {
+      console.log('formTransactionValues',formTransactionValues)
+      const result = await fetchHandler({
+        method: 'POST',
+        url: '/api/v1/membership/create',
+        body: {
+          transaction_id: formTransactionValues.transactionId,
+          membership_type: formTransactionValues.membership,
+        },
+        auth: true,
+      })
+      if (result.data.success) {
+        setResponseOfTransactionApi({
+          type: 'success',
+          message: 'You have successfully submitted a new membership, you can check that out in your profile',
+        })
+        updateUser()
+        setTimeout(() => {
+          updateUser()
+        }, 2000)
+      } else {
+        setResponseOfTransactionApi({
+          type: 'danger',
+          message: result.data.message,
+        })
+      }
+    } catch (e) {
+      console.error(e)
+    }
+    setIsLoadingTransactionForm(false)
   }
 
   const handleSubmitForgot = async (event) => {
@@ -399,6 +461,9 @@ const Modals = () => {
     if (app.modal.modalToShow === 'login') {
       handleOpenLoginModal()
     }
+    if (app.modal.modalToShow === 'transaction') {
+      handleOpenTransactionModal()
+    }
   }, [app.modal.modalToShow])
 
   const updateUser = async () => {
@@ -443,11 +508,22 @@ const Modals = () => {
         showLoginModal={showLoginModal}
         formLoginValues={formLoginValues}
         handleCloseLoginModal={handleCloseLoginModal}
+        handleOpenRegisterModal={handleOpenRegisterModal}
         isLoadingLoginForm={isLoadingLoginForm}
         handleSubmitLogin={handleSubmitLogin}
         handleChangeLoginForm={handleChangeLoginForm}
         responseOfApiLogin={responseOfApiLogin}
         handleOpenForgotModal={handleOpenForgotModal}
+      />
+      <TransactionModal
+        showTransactionModal={showTransactionModal}
+        formTransactionValues={formTransactionValues}
+        handleCloseTransactionModal={handleCloseTransactionModal}
+        handleOpenTransactionModal={handleOpenTransactionModal}
+        isLoadingTransactionForm={isLoadingTransactionForm}
+        handleSubmitTransactionForm={handleSubmitTransactionForm}
+        handleChangeTransactionModal={handleChangeTransactionModal}
+        responseOfTransactionApi={responseOfTransactionApi}
       />
       <ForgotModal
         showForgotModal={showForgotModal}

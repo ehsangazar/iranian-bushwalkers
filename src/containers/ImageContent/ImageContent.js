@@ -31,7 +31,7 @@ const ImageContent = ({
                   <h2 className="heading--title">{title}</h2>
                   <p className="heading--desc">{description}</p>
                   <br />
-                  <Link to={linkTo}>{linkTitle}</Link>
+                  <a href={linkTo} target="_blank" rel="noopener noreferrer">{linkTitle}</a>
                 </div>
               </div>
             </div>
