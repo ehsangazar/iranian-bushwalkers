@@ -7,6 +7,7 @@ import ehsan from "./ehsan.png"
 import golsa from "./golsa.png"
 import tannaz from "./tannaz.png"
 import hamed from "./hamed.png"
+import mehdi from "./mehdi.png"
 import kazem from "./kazem.png"
 import borzu from "./borzu.png"
 import negar from "./negar.png"
@@ -100,6 +101,12 @@ const BoardMembers = () => {
                   <td>Hoda Barazandeh</td>
                   <td>Board Member</td>
                   <td><Link to="/user/4dfd7ef0-3eba-11eb-9f66-b90bc4559cd7">View</Link></td>
+                </tr>
+                <tr>
+                  <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={mehdi} alt="Mehdi Najmi" /></td>
+                  <td>Mehdi Najmi</td>
+                  <td>Board Member</td>
+                  <td><Link to="/user/eabe49b0-4386-11eb-929d-29f1cff5bb77">View</Link></td>
                 </tr>
               </tbody>
             </Table>
