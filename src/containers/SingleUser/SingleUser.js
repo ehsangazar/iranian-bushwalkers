@@ -5,15 +5,17 @@ import { Container, Row , Col, Table, Alert, Badge } from 'react-bootstrap'
 import Space from '../Space/Space'
 import fetchHandler from '../../utils/fetchHandler'
 import NotFound from '../NotFound/NotFound'
+import { Link ,
+  useParams
+} from 'react-router-dom'
 import MyApp from '../../contexts/MyApp'
 import LoadingPage from '../LoadingPage/LoadingPage'
-import {
-  useParams
-} from "react-router-dom";
+
 import { format, differenceInDays } from 'date-fns'
 
 const SingleUser = (props) => {
   const [userDetails, setUserDetails] = useState({})
+  const [eventDetails, setEventDetails] = useState([])
   const [tempMembership, setTempMemberships] = useState([])
   const [annualMembership, setAnnualMemberships] = useState([])
   let params = useParams();
@@ -30,6 +32,21 @@ const SingleUser = (props) => {
         getMembership(result.data.user.id)
       } else {
         setUserDetails(null)
+      }
+    } catch (e) {
+      console.error(e)
+    }
+  }
+  const getEvents = async () => {
+    try {
+      const result = await fetchHandler({
+        method: 'GET',
+        url: `/api/v1/user/${params.id}/events`,
+      })
+      if (result?.data?.success) {
+        setEventDetails(result.data.events)
+      } else {
+        setEventDetails(null)
       }
     } catch (e) {
       console.error(e)
@@ -60,6 +77,7 @@ const SingleUser = (props) => {
 
   useEffect(()=>{
     getUser()
+    getEvents()
   }, [])
   
   if (userDetails === null) {
@@ -107,7 +125,7 @@ const SingleUser = (props) => {
                       </tbody>
                     </Table>
                   </Row>
-                  <Row>
+                  <Row style={{width: '100%', overflowX: 'auto'}}>
                     <Space />
                     <h5>
                       Temporary Membership
@@ -146,7 +164,7 @@ const SingleUser = (props) => {
                       </Table>
                   )}
                   </Row>
-                  <Row>
+                  <Row style={{width: '100%', overflowX: 'auto'}}>
                     <Space />
                     <h5>
                       Annual Membership
@@ -169,6 +187,7 @@ const SingleUser = (props) => {
                         </thead>
                         <tbody>
                           {annualMembership
+                          .slice(0,1)
                           .map(membership => (
                             <tr>
                               <td>
@@ -181,7 +200,7 @@ const SingleUser = (props) => {
                                 {format(new Date(userDetails.expiry_date),'MM/dd/yyyy')}
                               </td>
                               <td>
-                                {differenceInDays(new Date(membership.created_at),new Date(userDetails.expiry_date)) > 1?<Badge variant="danger">Used</Badge>:<Badge variant="success">Active</Badge>}
+                                {differenceInDays(new Date(membership.created_at),new Date(userDetails.expiry_date)) > 1?<Badge variant="danger">Expired</Badge>:<Badge variant="success">Active</Badge>}
                               </td>
                             </tr>
                           ))}
@@ -189,18 +208,33 @@ const SingleUser = (props) => {
                       </Table>
                     )}
                   </Row>
-                  <Row>
+                  <Row style={{width: '100%', overflowX: 'auto'}}>
                     <Space />
                     <h5>
                       Events
                     </h5>
                     <Space />
                     <Table striped bordered hover>
-                      <tbody>
+                      <thead>
                         <tr>
-                          <td>Date</td>
-                          <td>Event Name</td>
+                          <td>Event Number</td>
+                          <td>Name</td>
+                          <td>Start Date</td>
+                          <td>End Date</td>
+                          <td>Event Link</td> 
                         </tr>
+                      </thead>
+                      <tbody>
+                        {eventDetails.map(singleEvent => (
+                          <tr>
+                            <td>{singleEvent.event.event_number}</td>
+                            <td>{singleEvent.event.name}</td>
+                            <td>{format(new Date(singleEvent.event.start_date),'MM/dd/yyyy')}</td>
+                            <td>{format(new Date(singleEvent.event.end_date),'MM/dd/yyyy')}</td>
+                            <td><Link to={`/event/${singleEvent.event.id}`}>View Event</Link></td>
+                          </tr>
+                          )
+                        )}
                       </tbody>
                     </Table>
                   </Row>

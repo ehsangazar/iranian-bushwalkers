@@ -88,7 +88,7 @@ const Transactions = () => {
               />
             </Form.Group>
           </Row>
-          <Row style={{padding: '20px'}}>
+          <Row style={{padding: '20px', overflowX: 'auto'}}>
             <Table striped bordered hover>
               <thead>
                 <tr>

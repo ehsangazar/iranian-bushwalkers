@@ -2,29 +2,30 @@ import React, {useState,useEffect} from 'react'
 import Layout from '../Layout/Layout'
 import SinglePostSection from '../SinglePostSection/SinglePostSection'
 import ContentMiddleBackgroundSolid from '../ContentMiddleBackgroundSolid/ContentMiddleBackgroundSolid'
-import { Container, Row , Table, Form } from 'react-bootstrap'
+import { Container, Row , Table, Form,Alert } from 'react-bootstrap'
 import Space from '../Space/Space'
 import { Link } from 'react-router-dom'
 import fetchHandler from '../../utils/fetchHandler'
 import LoadingPage from '../LoadingPage/LoadingPage'
+import { format, differenceInDays } from 'date-fns'
 
 const Events = () => {
-  const [users, setUsers] = useState([])
-  const [filteredUsers, setFilteredUsers] = useState([])
+  const [events, setEvents] = useState([])
+  const [filteredEvents, setFilteredEvents] = useState([])
   const [search, setSearch] = useState(null)
 
-  const getUsers = async () => {
+  const getEvents = async () => {
     try {
       const result = await fetchHandler({
         method: 'GET',
-        url: `/api/v1/user/members`,
+        url: `/api/v1/event/list`,
       })
       if (result?.data?.success) {
-        setUsers(result.data.users)
-        setFilteredUsers(result.data.users)
+        setEvents(result.data.events)
+        setFilteredEvents(result.data.events)
       } else {
-        setUsers([])
-        setFilteredUsers([])
+        setEvents([])
+        setFilteredEvents([])
       }
     } catch (e) {
       console.error(e)
@@ -38,26 +39,33 @@ const Events = () => {
 
   useEffect(()=>{
     if (!search || search === '' || search === null){
-      setFilteredUsers(users)
+      setFilteredEvents(events)
     } else {
-      const newUsers = users.filter((user) => {
-        if (user.first_name.toLowerCase().includes(search.toLowerCase())) return true
-        if (user.last_name.toLowerCase().includes(search.toLowerCase())) return true
+      const newUsers = events.filter((event) => {
+        if (event.name.toLowerCase().includes(search.toLowerCase())) return true
         return false
       })
-      setFilteredUsers(newUsers)
+      setFilteredEvents(newUsers)
     }
   },[search])
 
   useEffect(()=>{
-    getUsers()
+    getEvents()
   }, [])
 
-  if (!users && users.length === 0) {
+  if (!events && events.length === 0) {
     return (
       <LoadingPage />
     )
   }
+
+  const activeEvents = filteredEvents.filter((event)=> {
+      return differenceInDays(new Date(event.end_date),new Date()) > 1
+  })
+
+  const pastEvents = filteredEvents.filter((event)=> {
+      return differenceInDays(new Date(event.end_date),new Date()) <= 1
+  })
 
   return (
     <div>
@@ -76,12 +84,12 @@ const Events = () => {
               width: '100%'
             }}
             >
-              <h3>Search</h3>
+              <h3>Search Events</h3>
               <Form.Control
                 onChange={handleSearch}
                 type="text"
                 value={search}
-                placeholder="Search here"                
+                placeholder="Search Events"                
               />
             </Form.Group>
             <Row>
@@ -100,15 +108,69 @@ const Events = () => {
               </p>
             </Row>
           </Row>
-          <Row style={{padding: '20px'}}>
+          <Space></Space>
+          <h4>Active Events</h4>
+          <Row style={{padding: '10px', overflowX: 'auto'}}>
+            {activeEvents.length === 0 && (
+            <Alert
+              variant={'info'}
+              style={{
+                    width: '100%',
+                  }}
+            >
+                  No active event found
+            </Alert>
+            )}
+            {activeEvents.length > 0 && (
+              <Table striped bordered hover>
+                <thead>
+                  <td>Event Number</td>
+                  <td>Name</td>
+                  <td>Leader</td>
+                  <td>Max Users</td>
+                  <td>Start Date</td>
+                  <td>End Date</td>
+                  <td>Event Link</td>
+                </thead>
+                <tbody>
+                  {activeEvents.map(event => (
+                    <tr>
+                      <td>{event.event_number}</td>
+                      <td>{event.name}</td>
+                      <td><Link to={`/user/${event.user.id}`}>{`${event.user.first_name} ${event.user.last_name}`}</Link></td>
+                      <td>{event.max_users}</td>
+                      <td>{format(new Date(event.start_date),'MM/dd/yyyy')}</td>
+                      <td>{format(new Date(event.end_date),'MM/dd/yyyy')}</td>
+                      <td><Link to={`/event/${event.id}`}>View Event</Link></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+          )}
+          </Row>
+          <Space></Space>
+          <h4>Past Events</h4>
+          <Row style={{padding: '10px', overflowX: 'auto'}}>
             <Table striped bordered hover>
+              <thead>
+                <td>Event Number</td>
+                <td>Name</td>
+                <td>Max Users</td>
+                <td>Start Date</td>
+                <td>End Date</td>
+                <td>Event Link</td>
+              </thead>
               <tbody>
-                {filteredUsers.map(user => (
+                {filteredEvents.filter((event)=> {
+                  return differenceInDays(new Date(event.end_date),new Date()) <= 1
+                }).map(event => (
                   <tr>
-                    <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={user.image} alt={`${user.first_name} ${user.last_name}`} /></td>
-                    <td>{`${user.first_name} ${user.last_name}`}</td>
-                    <td>{user.role==='admin' ? 'Board Member' : 'Member'}</td>
-                    <td><Link to={`/user/${user.id}`}>View</Link></td>
+                    <td>{event.event_number}</td>
+                    <td>{event.name}</td>
+                    <td>{event.max_users}</td>
+                    <td>{format(new Date(event.start_date),'MM/dd/yyyy')}</td>
+                    <td>{format(new Date(event.end_date),'MM/dd/yyyy')}</td>
+                    <td><Link to={`/event/${event.id}`}>View Event</Link></td>
                   </tr>
                 ))}
               </tbody>

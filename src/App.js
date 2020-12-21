@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { QueryParamProvider } from 'use-query-params'
 import Home from './containers/Home/Home'
+import SingleEvent from './containers/SingleEvent/SingleEvent'
 import About from './containers/About/About'
 import BoardMembers from './containers/BoardMembers/BoardMembers'
 import Membership from './containers/Membership/Membership'
@@ -71,6 +72,9 @@ export default function App() {
               </Route>
               <Route path="/user/:id">
                 <SingleUser />
+              </Route>
+              <Route path="/event/:id">
+                <SingleEvent />
               </Route>
               <Route path="/events">
                 <Events />

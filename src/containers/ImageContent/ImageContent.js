@@ -7,6 +7,7 @@ const ImageContent = ({
   linkTitle,
   linkTo,
   image,
+  external,
   flip,
 }) => {
   return (
@@ -31,7 +32,12 @@ const ImageContent = ({
                   <h2 className="heading--title">{title}</h2>
                   <p className="heading--desc">{description}</p>
                   <br />
-                  <a href={linkTo} target="_blank" rel="noopener noreferrer">{linkTitle}</a>
+                  {!external &&
+                    <Link to={linkTo}>{linkTitle}</Link>
+                  }
+                  {external && 
+                    <a href={linkTo} target="_blank" rel="noopener noreferrer">{linkTitle}</a>
+                  }
                 </div>
               </div>
             </div>

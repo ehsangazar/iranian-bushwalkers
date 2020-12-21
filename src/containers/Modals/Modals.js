@@ -5,6 +5,8 @@ import LoginModal from '../LoginModal/LoginModal'
 import TransactionModal from '../TransactionModal/TransactionModal'
 import ForgotModal from '../ForgotModal/ForgotModal'
 import RegisterModal from '../RegisterModal/RegisterModal'
+import CreateEventModal from '../CreateEventModal/CreateEventModal'
+import EventModal from '../EventModal/EventModal'
 import ResetModal from '../ResetModal/ResetModal'
 import RegisterConfirmModal from '../RegisterConfirmModal/RegisterConfirmModal'
 import RegisterSendVerificationEmailModal from '../RegisterSendVerificationEmailModal/RegisterSendVerificationEmailModal'
@@ -17,6 +19,7 @@ const Modals = () => {
   const [formLoginValues, setFormLoginValues] = useState({})
   const [formForgotValues, setFormForgotValues] = useState({})
   const [formResetValues, setFormResetValues] = useState({})
+  const [formCreateEventValues, setCreateEventValues] = useState({})
 
   const [showRegisterModal, setShowRegisterModal] = useState(false)
   const [showLoginModal, setShowLoginModal] = useState(false)
@@ -25,12 +28,14 @@ const Modals = () => {
   const [showSendVerificationEmailModal, setShowSendVerificationEmailModal] = useState(false)
   const [showConfirmEmailModal, setShowConfirmEmailModal] = useState(false)
   const [showTransactionModal, setShowTransactionModal] = useState(false)
+  const [showCreateEventModal, setShowCreateEventModal] = useState(false)
 
   const [isLoadingRegisterForm, setIsLoadingRegisterForm] = useState(false)
   const [isLoadingLoginForm, setIsLoadingLoginForm] = useState(false)
   const [isLoadingForgotForm, setIsLoadingForgotForm] = useState(false)
   const [isLoadingResetForm, setIsLoadingResetForm] = useState(false)
   const [isLoadingTransactionForm, setIsLoadingTransactionForm] = useState(false)
+  const [isLoadingCreateEventForm, setIsLoadingCreateEventForm] = useState(false)
   const [
     isLoadingRegisterConfirmModal,
     setIsLoadingRegisterConfirmModal,
@@ -46,6 +51,7 @@ const Modals = () => {
   const [responseOfApiForgot, setResponseOfApiForgot] = useState(null)
   const [responseOfApiReset, setResponseOfApiReset] = useState(null)
   const [responseOfTransactionApi, setResponseOfTransactionApi] = useState(null)
+  const [responseOfApiCreateEvent, setReponseOfApiCreateEvent] = useState(null)
 
   const [forgotEmailToken, setForgotEmailToken] = useQueryParam(
     'forgotEmailToken',
@@ -88,6 +94,10 @@ const Modals = () => {
     app.modal.setModalToShow('')
     setShowConfirmEmailModal(false)
   }
+  const handleCloseCreateEventModal = () => {
+    app.modal.setModalToShow('')
+    setShowCreateEventModal(false)
+  }
 
   const handleOpenLoginModal = () => {
     setShowLoginModal(true)
@@ -109,6 +119,9 @@ const Modals = () => {
   }
   const handleOpenTransactionModal = () => {
     setShowTransactionModal(true)
+  }
+  const handleOpenCreateEventModal = () => {
+    setShowCreateEventModal(true)
   }
 
   const handleChangeRegisterForm = (name, event, type = 'input') => {
@@ -150,6 +163,13 @@ const Modals = () => {
     if (event) event.preventDefault()
     setFormTransactionValues({
       ...formTransactionValues,
+      [name]: event.target.value,
+    })
+  }
+  const handleChangeCreateEventForm = (name, event) => {
+    if (event) event.preventDefault()
+    setCreateEventValues({
+      ...formCreateEventValues,
       [name]: event.target.value,
     })
   }
@@ -286,7 +306,6 @@ const Modals = () => {
       return
     }
     try {
-      console.log('formTransactionValues',formTransactionValues)
       const result = await fetchHandler({
         method: 'POST',
         url: '/api/v1/membership/create',
@@ -418,9 +437,45 @@ const Modals = () => {
     setIsLoadingRegisterSendEmailVerificationModal(false)
   }
 
-  const handleClickOnLogOut = () => {
-    localStorage.setItem('token', '')
-    updateUser()
+  const handleSubmitCreateEvent = async (event) => {
+    if (event) event.preventDefault()
+    setIsLoadingTransactionForm(true)
+    try {
+      const result = await fetchHandler({
+        method: 'POST',
+        url: '/api/v1/event/create',
+        auth: true,
+        body: {
+          name: formCreateEventValues.name,
+          event_number: formCreateEventValues.event_number,
+          leader_id: formCreateEventValues.leader_id,
+          facebook_link: formCreateEventValues.facebook_link,
+          max_users: formCreateEventValues.max_users,
+          start_date: formCreateEventValues.start_date,
+          end_date: formCreateEventValues.end_date,
+          type: 'hike',
+        },
+      })
+      if (result.data.success) {
+        setReponseOfApiCreateEvent({
+          type: 'success',
+          message: 'Thank you, you have created the event successfully',
+        })
+        updateUser()
+        setTimeout(() => {
+          handleCloseCreateEventModal()
+        }, 3000)
+      } else {
+        setReponseOfApiCreateEvent({
+          type: 'danger',
+          message: result.data.message,
+        })
+      }
+      updateUser()
+    } catch (e) {
+      console.error(e)
+    }
+    setIsLoadingTransactionForm(false)
   }
 
   const logout = () => {
@@ -463,6 +518,9 @@ const Modals = () => {
     }
     if (app.modal.modalToShow === 'transaction') {
       handleOpenTransactionModal()
+    }
+    if (app.modal.modalToShow === 'create-event') {
+      handleOpenCreateEventModal()
     }
   }, [app.modal.modalToShow])
 
@@ -542,6 +600,15 @@ const Modals = () => {
         handleSubmitReset={handleSubmitReset}
         handleChangeResetForm={handleChangeResetForm}
         responseOfApiReset={responseOfApiReset}
+      />
+      <CreateEventModal
+        showCreateEventModal={showCreateEventModal}
+        formCreateEventValues={formCreateEventValues}
+        handleCloseCreateEventModal={handleCloseCreateEventModal}
+        isLoadingCreateEventForm={isLoadingCreateEventForm}
+        handleSubmitCreateEvent={handleSubmitCreateEvent}
+        handleChangeCreateEventForm={handleChangeCreateEventForm}
+        responseOfApiCreateEvent={responseOfApiCreateEvent}
       />
       <RegisterSendVerificationEmailModal
         showSendVerificationEmailModal={showSendVerificationEmailModal}

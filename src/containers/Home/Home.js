@@ -48,6 +48,7 @@ const Home = () => {
           }
           linkTitle={'Our Facebook'}
           linkTo={'https://facebook.com/iranianBushwalkers'}
+          external
           image={UnSeenImage}
         />
       </Layout>

@@ -24,8 +24,16 @@ const BoardMembers = () => {
         <ContentMiddleBackgroundSolid title="Board Members" />
         <Space />
         <Container>
-          <Row style={{padding: '20px'}}>
+          <Row style={{padding: '20px', overflowX: 'auto'}}>
             <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <td>Image</td>
+                  <td>Name</td>
+                  <td>Role</td>
+                  <td>Link</td>
+                </tr>
+              </thead>
               <tbody>
                 <tr>
                   <td><img style={{width: '100%', maxWidth: '100px', paddingRight: '10px'}} src={hamid} alt="Hamid Ashouri" /></td>

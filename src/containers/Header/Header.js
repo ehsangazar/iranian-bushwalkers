@@ -23,6 +23,10 @@ const Header = () => {
     app.modal.setModalToShow('login')
   }
 
+  const handleOpenCreateEvent = () => {
+    app.modal.setModalToShow('create-event')
+  }
+
   const handleLogOut = () => {
     localStorage.setItem('token', '')
     app.user.setUserData({})
@@ -212,10 +216,12 @@ const Header = () => {
                             backgroundColor: '#000000',
                             color: 'white'
                           }}
-                        >Admin
+                        >
+                          Admin
                         </Dropdown.Item>
                         <Dropdown.Divider />
                         <Dropdown.Item href={`/transactions`}>Transactions</Dropdown.Item>
+                        <Dropdown.Item onClick={handleOpenCreateEvent}>Create Event</Dropdown.Item>
                       </div>
                     )}
                   </DropdownButton>

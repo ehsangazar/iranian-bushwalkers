@@ -1,6 +1,5 @@
 import React, {useState,useEffect} from 'react'
 import Layout from '../Layout/Layout'
-import SinglePostSection from '../SinglePostSection/SinglePostSection'
 import ContentMiddleBackgroundSolid from '../ContentMiddleBackgroundSolid/ContentMiddleBackgroundSolid'
 import { Container, Row , Table, Form } from 'react-bootstrap'
 import Space from '../Space/Space'
@@ -86,8 +85,16 @@ const Leaders = () => {
               />
             </Form.Group>
           </Row>
-          <Row style={{padding: '20px'}}>
+          <Row style={{padding: '20px', overflowX: 'auto'}}>
             <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <td>Image</td>
+                  <td>Name</td>
+                  <td>Role</td>
+                  <td>Link</td>
+                </tr>
+              </thead>
               <tbody>
                 {filteredUsers.map(user => (
                   <tr>
