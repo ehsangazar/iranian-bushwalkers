@@ -115,12 +115,6 @@ const Header = () => {
                   <li>
                     <Link to="/board-members">Board Members</Link>
                   </li>
-                  <li>
-                    <Link to="/leaders">Leaders</Link>
-                  </li>
-                  <li>
-                    <Link to="/members">Members</Link>
-                  </li>
                 </ul>
               </li>
 
@@ -222,6 +216,7 @@ const Header = () => {
                         <Dropdown.Divider />
                         <Dropdown.Item href={`/transactions`}>Transactions</Dropdown.Item>
                         <Dropdown.Item onClick={handleOpenCreateEvent}>Create Event</Dropdown.Item>
+                        <Dropdown.Item href={'/members'}>Members</Dropdown.Item>
                       </div>
                     )}
                   </DropdownButton>
